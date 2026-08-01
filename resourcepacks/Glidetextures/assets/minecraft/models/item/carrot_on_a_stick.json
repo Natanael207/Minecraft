@@ -1,0 +1,23 @@
+{
+  "parent": "minecraft:item/handheld_rod",
+  "textures": {
+    "layer0": "minecraft:item/carrot_on_a_stick"
+  },
+  "overrides": [
+    { "predicate": {"custom_model_data":1}, "model":"item/pfeil_links" },
+    { "predicate": {"custom_model_data":2}, "model":"item/pfeil_rechts" },
+    { "predicate": {"custom_model_data":3}, "model":"item/body" },
+    { "predicate": {"custom_model_data":4}, "model":"item/mobs" },
+    { "predicate": {"custom_model_data":5}, "model":"item/shrunk" },
+    { "predicate": {"custom_model_data":6}, "model":"item/celts" },
+    { "predicate": {"custom_model_data":7}, "model":"item/excalibur" },
+    { "predicate": {"custom_model_data":8}, "model":"item/icarus" },
+    { "predicate": {"custom_model_data":9}, "model":"item/dragon" },
+    { "predicate": {"custom_model_data":10}, "model":"item/kraken" },
+    { "predicate": {"custom_model_data":11}, "model":"item/yeti" },
+    { "predicate": {"custom_model_data":12}, "model":"item/canyon" },
+    { "predicate": {"custom_model_data":13}, "model":"item/cavern" },
+    { "predicate": {"custom_model_data":14}, "model":"item/temple" },
+    { "predicate": {"custom_model_data":15}, "model":"item/start" }
+  ]
+}
