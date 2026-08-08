@@ -1,96 +1,62 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Custom Resourcepack Tools</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <!-- Global CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <title>Minecraft Tools</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
 </head>
+
 
 <body>
 
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+
 <header class="site-header">
 
-    <!-- Logo -->
-    <a href="index.html" class="site-logo">
-        <div class="site-logo-icon">🧱</div>
-        <span>Custom Resourcepack Tools</span>
-    </a>
+    <div class="header-left">
 
-    <!-- Navigation -->
-    <div class="header-right">
-
-        <button
-            class="nav-button"
-            id="generatorMenuButton"
-            type="button"
+        <a
+            href="index.html"
+            class="logo"
         >
-            Generatoren
-            <span class="arrow">▼</span>
-        </button>
+            🧱 Minecraft Tools
+        </a>
 
     </div>
 
-    <!-- Generator Flyout -->
-    <div
-        class="generator-flyout"
-        id="generatorFlyout"
-    >
 
-        <div class="flyout-header">
-            Generator auswählen
-        </div>
+    <div class="header-center">
 
-        <!-- Model Generator -->
+        <h1>
+            Minecraft Tools
+        </h1>
+
+    </div>
+
+
+    <div class="header-right">
+
         <button
-            class="generator-option"
+            id="menuButton"
+            class="header-menu-button"
             type="button"
-            onclick="window.location.href='model-generator.html'"
+            aria-label="Menü öffnen"
+            aria-expanded="false"
         >
-            <div class="generator-icon">
-                🧱
-            </div>
-
-            <div class="generator-text">
-
-                <div class="generator-title">
-                    Model Generator
-                </div>
-
-                <div class="generator-description">
-                    Modelle aus einem Resourcepack anzeigen
-                    und für ein eigenes Resourcepack auswählen.
-                </div>
-
-            </div>
-        </button>
-
-
-        <!-- Item Generator -->
-        <button
-            class="generator-option"
-            type="button"
-            onclick="window.location.href='item-generator.html'"
-        >
-            <div class="generator-icon">
-                🧩
-            </div>
-
-            <div class="generator-text">
-
-                <div class="generator-title">
-                    Item Generator
-                </div>
-
-                <div class="generator-description">
-                    Modelle aus <code>/items/</code> anzeigen
-                    und einem Minecraft-Item zuweisen.
-                </div>
-
-            </div>
+            ☰
         </button>
 
     </div>
@@ -98,155 +64,395 @@
 </header>
 
 
-<main class="site-main">
 
-    <div class="page-heading">
+<!-- =========================================================
+     FLYOUT MENU
+     ========================================================= -->
 
-        <div class="eyebrow">
-            Minecraft Resourcepack Tools
+<div
+    id="menuBackdrop"
+    class="menu-backdrop"
+></div>
+
+
+<aside
+    id="flyoutMenu"
+    class="flyout-menu"
+>
+
+    <div class="flyout-header">
+
+        <div>
+
+            <div class="flyout-title">
+                Minecraft Tools
+            </div>
+
+            <div class="flyout-subtitle">
+                Werkzeugauswahl
+            </div>
+
         </div>
 
-        <h1>
-            Custom Resourcepack Tools
-        </h1>
 
-        <p class="page-description">
-            Wähle einen Generator aus, um deine Minecraft
-            Custom Models zu verwalten und daraus ein
-            eigenes Resourcepack zusammenzustellen.
-        </p>
+        <button
+            id="closeMenuButton"
+            class="flyout-close"
+            type="button"
+            aria-label="Menü schließen"
+        >
+            ×
+        </button>
 
     </div>
 
 
-    <!-- Generator overview -->
+    <nav class="flyout-navigation">
 
-    <div class="items-grid">
-
-        <!-- Model Generator Card -->
-
-        <div
-            class="item-card"
-            onclick="window.location.href='model-generator.html'"
+        <a
+            href="index.html"
+            class="flyout-item active"
         >
 
-            <div class="item-preview">
-                <div class="item-preview-icon">
-                    🧱
-                </div>
-            </div>
-
-            <div class="item-name">
-                Model Generator
-            </div>
-
-            <div class="item-path">
-                /models/item/ & /models/block/
-            </div>
-
-            <span class="item-type">
-                MODEL
+            <span class="flyout-item-icon">
+                🏠
             </span>
+
+            <span class="flyout-item-text">
+
+                <strong>
+                    Startseite
+                </strong>
+
+                <small>
+                    Übersicht aller Tools
+                </small>
+
+            </span>
+
+        </a>
+
+
+        <a
+            href="model-generator.html"
+            class="flyout-item"
+        >
+
+            <span class="flyout-item-icon">
+                🧊
+            </span>
+
+            <span class="flyout-item-text">
+
+                <strong>
+                    Model Generator
+                </strong>
+
+                <small>
+                    Models auswählen und Resourcepack erstellen
+                </small>
+
+            </span>
+
+        </a>
+
+
+        <a
+            href="item-generator.html"
+            class="flyout-item"
+        >
+
+            <span class="flyout-item-icon">
+                🎒
+            </span>
+
+            <span class="flyout-item-text">
+
+                <strong>
+                    Item Generator
+                </strong>
+
+                <small>
+                    Custom Items auswählen und ersetzen
+                </small>
+
+            </span>
+
+        </a>
+
+    </nav>
+
+</aside>
+
+
+
+<!-- =========================================================
+     MAIN
+     ========================================================= -->
+
+<main class="home-page">
+
+
+    <!-- HERO -->
+
+    <section class="home-hero">
+
+        <div class="home-hero-icon">
+            🧱
+        </div>
+
+
+        <div class="home-hero-content">
+
+            <div class="home-eyebrow">
+                MINECRAFT RESOURCEPACK TOOLS
+            </div>
+
+            <h2>
+                Minecraft Tools
+            </h2>
+
+            <p>
+                Verwalte deine Custom Models und Items
+                und erstelle daraus deine eigenen Resourcepacks.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- TOOLS -->
+
+    <section class="tools-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <h2>
+                    Tools
+                </h2>
+
+                <p>
+                    Wähle aus, was du mit deinen Custom Models machen möchtest.
+                </p>
+
+            </div>
 
         </div>
 
 
-        <!-- Item Generator Card -->
+        <div class="tools-grid">
 
-        <div
-            class="item-card"
-            onclick="window.location.href='item-generator.html'"
-        >
 
-            <div class="item-preview">
-                <div class="item-preview-icon">
-                    🧩
+            <!-- MODEL GENERATOR -->
+
+            <a
+                href="model-generator.html"
+                class="tool-card"
+            >
+
+                <div class="tool-card-icon">
+                    🧊
                 </div>
-            </div>
 
-            <div class="item-name">
-                Item Generator
-            </div>
 
-            <div class="item-path">
-                /items/
-            </div>
+                <div class="tool-card-content">
 
-            <span class="item-type">
-                ITEM
-            </span>
+                    <div class="tool-card-title">
+                        Model Generator
+                    </div>
+
+                    <div class="tool-card-description">
+                        Durchsuche die Models deines Resourcepacks,
+                        zeige sie als 3D-Modelle an und wähle mehrere
+                        Models für einen Resourcepack-Export aus.
+                    </div>
+
+
+                    <div class="tool-card-footer">
+
+                        <span>
+                            Models durchsuchen
+                        </span>
+
+                        <span class="tool-card-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </a>
+
+
+
+            <!-- ITEM GENERATOR -->
+
+            <a
+                href="item-generator.html"
+                class="tool-card"
+            >
+
+                <div class="tool-card-icon">
+                    🎒
+                </div>
+
+
+                <div class="tool-card-content">
+
+                    <div class="tool-card-title">
+                        Item Generator
+                    </div>
+
+                    <div class="tool-card-description">
+                        Durchsuche Custom Item Definitions und
+                        wähle aus, welches Minecraft-Item durch
+                        dein Custom Item ersetzt werden soll.
+                    </div>
+
+
+                    <div class="tool-card-footer">
+
+                        <span>
+                            Items durchsuchen
+                        </span>
+
+                        <span class="tool-card-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </a>
+
 
         </div>
 
-    </div>
+    </section>
+
+
+
+    <!-- INFO -->
+
+    <section class="home-info">
+
+        <div class="info-card">
+
+            <div class="info-card-icon">
+                💡
+            </div>
+
+            <div>
+
+                <h3>
+                    Für dein Resourcepack
+                </h3>
+
+                <p>
+                    Die Tools arbeiten direkt mit den Dateien
+                    deines Minecraft Resourcepacks. Du kannst
+                    deine Models lokal auswählen und später
+                    daraus ein eigenes Resourcepack generieren.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
 
 </main>
 
 
+
+<!-- =========================================================
+     JAVASCRIPT
+     ========================================================= -->
+
 <script>
 
-    /*
-     * =====================================================
-     * Generator Flyout
-     * =====================================================
-     */
+const menuButton =
+    document.getElementById("menuButton");
 
-    const generatorMenuButton =
-        document.getElementById("generatorMenuButton");
+const closeMenuButton =
+    document.getElementById("closeMenuButton");
 
-    const generatorFlyout =
-        document.getElementById("generatorFlyout");
+const flyoutMenu =
+    document.getElementById("flyoutMenu");
 
-
-    /*
-     * Toggle menu
-     */
-
-    generatorMenuButton.addEventListener("click", function (event) {
-
-        event.stopPropagation();
-
-        generatorFlyout.classList.toggle("open");
-
-        generatorMenuButton.classList.toggle(
-            "active",
-            generatorFlyout.classList.contains("open")
-        );
-
-    });
+const menuBackdrop =
+    document.getElementById("menuBackdrop");
 
 
-    /*
-     * Prevent clicks inside the menu
-     * from closing it immediately.
-     */
+function openMenu() {
 
-    generatorFlyout.addEventListener(
-        "click",
-        function (event) {
+    flyoutMenu.classList.add("open");
 
-            event.stopPropagation();
+    menuBackdrop.classList.add("visible");
 
-        }
+    menuButton.setAttribute(
+        "aria-expanded",
+        "true"
     );
 
+}
 
-    /*
-     * Close when clicking somewhere else.
-     */
 
-    document.addEventListener(
-        "click",
-        function () {
+function closeMenu() {
 
-            generatorFlyout.classList.remove("open");
+    flyoutMenu.classList.remove("open");
 
-            generatorMenuButton.classList.remove("active");
+    menuBackdrop.classList.remove("visible");
+
+    menuButton.setAttribute(
+        "aria-expanded",
+        "false"
+    );
+
+}
+
+
+menuButton.addEventListener(
+    "click",
+    openMenu
+);
+
+
+closeMenuButton.addEventListener(
+    "click",
+    closeMenu
+);
+
+
+menuBackdrop.addEventListener(
+    "click",
+    closeMenu
+);
+
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closeMenu();
 
         }
-    );
+
+    }
+);
 
 </script>
 
 </body>
+
 </html>

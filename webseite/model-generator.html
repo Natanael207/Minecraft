@@ -2,7 +2,6 @@
 <html lang="de">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -19,16 +18,10 @@
 
     <script src="lib/three.min.js"></script>
     <script src="lib/OrbitControls.js"></script>
-
 </head>
 
 
 <body>
-
-
-<!-- =========================================================
-     ORDNERAUSWAHL
-     ========================================================= -->
 
 <input
     type="file"
@@ -73,7 +66,7 @@
             id="selectFolderButton"
             class="header-button"
         >
-            📁 Ordner laden
+            📁 Resourcepack laden
         </button>
 
     </div>
@@ -83,36 +76,31 @@
 
 
 <!-- =========================================================
-     MAIN
+     CONTENT
      ========================================================= -->
 
 <main class="page-content">
 
 
-    <!-- =====================================================
-         START
-         ===================================================== -->
+    <!-- START -->
 
     <section
         id="startScreen"
-        class="start-screen"
+        class="generator-start"
     >
 
-        <div class="start-icon">
+        <div class="generator-start-icon">
             🧊
         </div>
 
-
         <h2>
-            Minecraft Models laden
+            Minecraft Models
         </h2>
 
-
         <p>
-            Wähle deinen Resourcepack-Ordner aus,
-            um deine Item- und Block-Models anzuzeigen.
+            Lade einen Resourcepack-Ordner,
+            um deine Models anzuzeigen.
         </p>
-
 
         <button
             id="startFolderButton"
@@ -125,9 +113,7 @@
 
 
 
-    <!-- =====================================================
-         GENERATOR
-         ===================================================== -->
+    <!-- GENERATOR -->
 
     <section
         id="generator"
@@ -135,19 +121,29 @@
     >
 
 
-        <!-- TOOLBAR -->
+        <!-- =================================================
+             TOOLBAR
+             ================================================= -->
 
         <div class="generator-toolbar">
 
 
             <div class="toolbar-left">
 
-                <input
-                    id="searchInput"
-                    class="search-input"
-                    type="text"
-                    placeholder="🔎 Model suchen..."
-                >
+                <div class="search-wrapper">
+
+                    <span class="search-icon">
+                        🔎
+                    </span>
+
+                    <input
+                        id="searchInput"
+                        class="search-input"
+                        type="text"
+                        placeholder="Models suchen..."
+                    >
+
+                </div>
 
 
                 <select
@@ -160,11 +156,11 @@
                     </option>
 
                     <option value="item">
-                        Item Models
+                        Items
                     </option>
 
                     <option value="block">
-                        Block Models
+                        Blöcke
                     </option>
 
                 </select>
@@ -172,10 +168,9 @@
             </div>
 
 
-
             <div class="toolbar-right">
 
-                <label class="select-all-label">
+                <label class="select-all">
 
                     <input
                         id="selectAllCheckbox"
@@ -206,14 +201,16 @@
 
         <div
             id="status"
-            class="status"
+            class="models-status"
         >
-            0 Models gefunden.
+            0 Models gefunden
         </div>
 
 
 
-        <!-- MODEL GRID -->
+        <!-- =================================================
+             GRID
+             ================================================= -->
 
         <div
             id="modelGrid"
@@ -230,7 +227,7 @@
             style="display:none;"
         >
 
-            <div class="empty-icon">
+            <div class="empty-state-icon">
                 🔍
             </div>
 
@@ -239,7 +236,8 @@
             </h2>
 
             <p>
-                Für diese Suche wurden keine Models gefunden.
+                Es wurden keine Models gefunden,
+                die zu deiner Suche passen.
             </p>
 
         </div>
@@ -251,35 +249,38 @@
 
 
 <!-- =========================================================
-     3D VIEWER
+     VIEWER MODAL
      ========================================================= -->
 
 <div
     id="viewerModal"
-    class="modal"
+    class="viewer-modal"
     style="display:none;"
 >
 
-    <div class="modal-backdrop"></div>
+    <div
+        class="viewer-backdrop"
+        id="viewerBackdrop"
+    ></div>
 
 
-    <div class="modal-window">
+    <div class="viewer-window">
 
 
-        <div class="modal-header">
+        <div class="viewer-header">
 
-            <div>
+            <div class="viewer-title-area">
 
-                <h2
+                <div
                     id="viewerTitle"
-                    class="modal-title"
+                    class="viewer-title"
                 >
                     Model
-                </h2>
+                </div>
 
                 <div
                     id="viewerPath"
-                    class="modal-path"
+                    class="viewer-path"
                 ></div>
 
             </div>
@@ -287,7 +288,7 @@
 
             <button
                 id="closeViewerButton"
-                class="modal-close"
+                class="viewer-close"
             >
                 ×
             </button>
@@ -303,12 +304,17 @@
 
 
 
-        <div class="modal-footer">
+        <div class="viewer-footer">
 
-            <span class="viewer-help">
-                🖱️ Drehen · Mausrad: Zoom ·
+            <div class="viewer-help">
+
+                🖱️ Drehen
+                &nbsp;·&nbsp;
+                Mausrad: Zoom
+                &nbsp;·&nbsp;
                 Rechte Maustaste: Verschieben
-            </span>
+
+            </div>
 
 
             <button
@@ -319,7 +325,6 @@
             </button>
 
         </div>
-
 
     </div>
 
@@ -359,7 +364,9 @@ const state = {
 
         controls: null,
 
-        animation: null
+        animation: null,
+
+        model: null
 
     }
 
@@ -403,6 +410,9 @@ const selectionCounter =
 
 const viewerModal =
     document.getElementById("viewerModal");
+
+const viewerBackdrop =
+    document.getElementById("viewerBackdrop");
 
 const viewerContainer =
     document.getElementById("viewerContainer");
@@ -470,12 +480,10 @@ document
     );
 
 
-document
-    .querySelector(".modal-backdrop")
-    .addEventListener(
-        "click",
-        closeViewer
-    );
+viewerBackdrop.addEventListener(
+    "click",
+    closeViewer
+);
 
 
 viewerSelectButton.addEventListener(
@@ -503,7 +511,7 @@ document.addEventListener(
 
 
 /* ============================================================
-   ORDNER AUSWÄHLEN
+   FOLDER
    ============================================================ */
 
 function selectFolder() {
@@ -514,11 +522,6 @@ function selectFolder() {
 
 }
 
-
-
-/* ============================================================
-   ORDNER EINLESEN
-   ============================================================ */
 
 async function handleFolderSelection(event) {
 
@@ -532,17 +535,13 @@ async function handleFolderSelection(event) {
 
 
     state.files = [];
-
     state.models = [];
-
     state.filteredModels = [];
 
     state.selectedModels.clear();
 
     state.filePathCache.clear();
-
     state.jsonCache.clear();
-
     state.textureCache.clear();
 
 
@@ -560,11 +559,6 @@ async function handleFolderSelection(event) {
         const parts =
             path.split("/");
 
-
-        /*
-         * Den Namen des ausgewählten
-         * Hauptordners entfernen.
-         */
 
         if (parts.length > 1) {
 
@@ -598,12 +592,11 @@ async function handleFolderSelection(event) {
     startScreen.style.display =
         "none";
 
-
     generator.style.display =
         "block";
 
 
-    await renderModels();
+    renderModels();
 
 }
 
@@ -629,9 +622,6 @@ function normalizePath(path) {
 
 function buildFileCache() {
 
-    state.filePathCache.clear();
-
-
     for (const item of state.files) {
 
         state.filePathCache.set(
@@ -649,7 +639,7 @@ function buildFileCache() {
 
 
 /* ============================================================
-   MODELS FINDEN
+   MODEL SUCHE
    ============================================================ */
 
 function findModels() {
@@ -668,7 +658,9 @@ function findModels() {
                 .toLowerCase()
                 .endsWith(".json")
         ) {
+
             continue;
+
         }
 
 
@@ -730,14 +722,14 @@ function findModels() {
 
 
     status.textContent =
-        `${state.models.length} Models gefunden.`;
+        `${state.models.length} Models gefunden`;
 
 }
 
 
 
 /* ============================================================
-   JSON LADEN
+   JSON
    ============================================================ */
 
 async function loadJSON(model) {
@@ -760,12 +752,10 @@ async function loadJSON(model) {
 
     try {
 
-        const text =
-            await model.file.text();
-
-
         const json =
-            JSON.parse(text);
+            JSON.parse(
+                await model.file.text()
+            );
 
 
         model.json =
@@ -785,7 +775,7 @@ async function loadJSON(model) {
     catch (error) {
 
         console.error(
-            "JSON konnte nicht gelesen werden:",
+            "JSON-Fehler:",
             model.path,
             error
         );
@@ -810,20 +800,34 @@ function findParentModel(parent) {
     }
 
 
-    if (parent.includes(":")) {
+    if (
+        parent.includes(":")
+    ) {
 
         const parts =
             parent.split(":");
 
+
+        if (
+            parts[0] !== "minecraft"
+        ) {
+
+            return null;
+
+        }
+
+
         parent =
-            parts[1];
+            parts.slice(1).join(":");
 
     }
 
 
     parent =
-        parent
-            .replace(/^\/+/, "");
+        parent.replace(
+            /^\/+/,
+            ""
+        );
 
 
     const candidates = [
@@ -901,7 +905,9 @@ async function resolveModelJSON(
 
 
     if (!json.parent) {
+
         return json;
+
     }
 
 
@@ -953,7 +959,9 @@ async function resolveModelJSON(
 
 
     if (!parentJSON) {
+
         return json;
+
     }
 
 
@@ -964,11 +972,6 @@ async function resolveModelJSON(
 
 }
 
-
-
-/* ============================================================
-   JSON MERGEN
-   ============================================================ */
 
 function mergeModelJSON(
     parent,
@@ -990,6 +993,14 @@ function mergeModelJSON(
     };
 
 
+    if (child.elements) {
+
+        result.elements =
+            child.elements;
+
+    }
+
+
     result.display = {
 
         ...(parent.display || {}),
@@ -999,34 +1010,6 @@ function mergeModelJSON(
     };
 
 
-    if (child.elements) {
-
-        result.elements =
-            child.elements;
-
-    }
-
-
-    for (
-        const key of [
-            "ambientocclusion",
-            "gui_light",
-            "render_type"
-        ]
-    ) {
-
-        if (
-            child[key] !== undefined
-        ) {
-
-            result[key] =
-                child[key];
-
-        }
-
-    }
-
-
     return result;
 
 }
@@ -1034,7 +1017,7 @@ function mergeModelJSON(
 
 
 /* ============================================================
-   MODEL CARDS
+   RENDER GRID
    ============================================================ */
 
 async function renderModels() {
@@ -1108,20 +1091,26 @@ async function renderModels() {
     updateSelectionUI();
 
 
-    await generatePreviewImages();
+    /*
+     * Vorschauen nacheinander erstellen.
+     * Dadurch werden nicht gleichzeitig
+     * hunderte WebGL-Kontexte geöffnet.
+     */
+
+    await generatePreviews();
 
 }
 
 
 
 /* ============================================================
-   CARD
+   MODEL CARD
    ============================================================ */
 
 function createModelCard(model) {
 
     const card =
-        document.createElement("div");
+        document.createElement("article");
 
 
     card.className =
@@ -1145,49 +1134,49 @@ function createModelCard(model) {
     }
 
 
-    /*
-     * Preview
-     */
+    /* Preview */
 
     const preview =
         document.createElement("div");
 
 
     preview.className =
-        "model-preview";
+        "model-card-preview";
 
 
-    const image =
+    const previewImage =
         document.createElement("img");
 
 
-    image.className =
+    previewImage.className =
         "model-preview-image";
 
 
-    image.dataset.modelPath =
-        model.path;
-
-
-    image.alt =
+    previewImage.alt =
         model.name;
 
 
+    previewImage.dataset.modelPath =
+        model.path;
+
+
     preview.appendChild(
-        image
+        previewImage
     );
 
 
-    /*
-     * Checkbox
-     */
+    /* Checkbox */
 
-    const checkboxWrapper =
+    const checkboxLabel =
         document.createElement("label");
 
 
-    checkboxWrapper.className =
-        "model-checkbox";
+    checkboxLabel.className =
+        "model-card-checkbox";
+
+
+    checkboxLabel.title =
+        "Modell auswählen";
 
 
     const checkbox =
@@ -1225,14 +1214,12 @@ function createModelCard(model) {
     );
 
 
-    checkboxWrapper.appendChild(
+    checkboxLabel.appendChild(
         checkbox
     );
 
 
-    /*
-     * Info
-     */
+    /* Info */
 
     const info =
         document.createElement("div");
@@ -1266,33 +1253,34 @@ function createModelCard(model) {
         model.path;
 
 
-    const type =
+    const badge =
         document.createElement("span");
 
 
-    type.className =
-        "model-card-type";
+    badge.className =
+        "model-card-badge";
 
 
-    type.textContent =
+    badge.textContent =
         model.type === "item"
             ? "ITEM"
             : "BLOCK";
 
 
     info.appendChild(title);
-
     info.appendChild(path);
-
-    info.appendChild(type);
+    info.appendChild(badge);
 
 
     card.appendChild(preview);
-
-    card.appendChild(checkboxWrapper);
-
+    card.appendChild(checkboxLabel);
     card.appendChild(info);
 
+
+    /*
+     * Klick auf die Kachel öffnet
+     * den großen Viewer.
+     */
 
     card.addEventListener(
         "click",
@@ -1307,7 +1295,7 @@ function createModelCard(model) {
 
 
 /* ============================================================
-   AUSWAHL
+   SELECTION
    ============================================================ */
 
 function setSelected(
@@ -1336,11 +1324,6 @@ function setSelected(
 
 }
 
-
-
-/* ============================================================
-   ALLE
-   ============================================================ */
 
 function toggleSelectAll() {
 
@@ -1375,11 +1358,6 @@ function toggleSelectAll() {
 
 }
 
-
-
-/* ============================================================
-   AUSWAHL UI
-   ============================================================ */
 
 function updateSelectionUI() {
 
@@ -1480,12 +1458,8 @@ async function findTexture(reference) {
             path.split(":");
 
 
-        const namespace =
-            parts.shift();
-
-
         if (
-            namespace !== "minecraft"
+            parts[0] !== "minecraft"
         ) {
 
             return null;
@@ -1494,7 +1468,7 @@ async function findTexture(reference) {
 
 
         path =
-            parts.join(":");
+            parts.slice(1).join(":");
 
     }
 
@@ -1579,6 +1553,7 @@ async function findTexture(reference) {
                             texture.wrapT =
                                 THREE.ClampToEdgeWrapping;
 
+
                             if (
                                 THREE.sRGBEncoding
                             ) {
@@ -1587,6 +1562,7 @@ async function findTexture(reference) {
                                     THREE.sRGBEncoding;
 
                             }
+
 
                             texture.needsUpdate =
                                 true;
@@ -1716,13 +1692,13 @@ function createMaterial(texture) {
 
 
 /* ============================================================
-   ELEMENT RENDERN
+   MINECRAFT ELEMENT
    ============================================================ */
 
 async function buildMinecraftElement(
     element,
     model,
-    group
+    parentGroup
 ) {
 
     if (
@@ -1739,82 +1715,71 @@ async function buildMinecraftElement(
     const from =
         element.from;
 
-
     const to =
         element.to;
 
+
+    /*
+     * Minecraft → Three.js
+     *
+     * X bleibt gleich
+     * Y bleibt gleich
+     * Z wird gespiegelt
+     */
 
     const vertices = {
 
         down: [
 
-            [from[0], from[1], to[2]],
-
-            [to[0], from[1], to[2]],
-
-            [to[0], from[1], from[2]],
-
-            [from[0], from[1], from[2]]
+            [from[0], from[1], -to[2]],
+            [to[0], from[1], -to[2]],
+            [to[0], from[1], -from[2]],
+            [from[0], from[1], -from[2]]
 
         ],
 
         up: [
 
-            [from[0], to[1], from[2]],
-
-            [from[0], to[1], to[2]],
-
-            [to[0], to[1], to[2]],
-
-            [to[0], to[1], from[2]]
+            [from[0], to[1], -from[2]],
+            [from[0], to[1], -to[2]],
+            [to[0], to[1], -to[2]],
+            [to[0], to[1], -from[2]]
 
         ],
 
         north: [
 
-            [to[0], from[1], from[2]],
-
-            [from[0], from[1], from[2]],
-
-            [from[0], to[1], from[2]],
-
-            [to[0], to[1], from[2]]
+            [to[0], from[1], -from[2]],
+            [from[0], from[1], -from[2]],
+            [from[0], to[1], -from[2]],
+            [to[0], to[1], -from[2]]
 
         ],
 
         south: [
 
-            [from[0], from[1], to[2]],
-
-            [to[0], from[1], to[2]],
-
-            [to[0], to[1], to[2]],
-
-            [from[0], to[1], to[2]]
+            [from[0], from[1], -to[2]],
+            [to[0], from[1], -to[2]],
+            [to[0], to[1], -to[2]],
+            [from[0], to[1], -to[2]]
 
         ],
 
         west: [
 
-            [from[0], from[1], from[2]],
-
-            [from[0], from[1], to[2]],
-
-            [from[0], to[1], to[2]],
-
-            [from[0], to[1], from[2]]
+            [from[0], from[1], -from[2]],
+            [from[0], from[1], -to[2]],
+            [from[0], to[1], -to[2]],
+            [from[0], to[1], -from[2]]
 
         ],
 
         east: [
 
-            [to[0], from[1], to[2]],
-
-            [to[0], from[1], from[2]],
-
-            [to[0], to[1], from[2]],
-
-            [to[0], to[1], to[2]]
+            [to[0], from[1], -to[2]],
+            [to[0], from[1], -from[2]],
+            [to[0], to[1], -from[2]],
+            [to[0], to[1], -to[2]]
 
         ]
 
@@ -1834,11 +1799,8 @@ async function buildMinecraftElement(
 
 
     const positions = [];
-
     const uvs = [];
-
     const indices = [];
-
     const materials = [];
 
 
@@ -1866,24 +1828,10 @@ async function buildMinecraftElement(
             const vertex of corners
         ) {
 
-            /*
-             * Minecraft:
-             *
-             * X = X
-             * Y = Y
-             * Z = Z
-             *
-             * Für Three.js drehen wir Z um.
-             */
-
             positions.push(
-
                 vertex[0],
-
                 vertex[1],
-
-                -vertex[2]
-
+                vertex[2]
             );
 
         }
@@ -1916,7 +1864,7 @@ async function buildMinecraftElement(
             );
 
 
-        const converted =
+        const convertedUV =
             convertUV(
                 uv,
                 face.rotation || 0
@@ -1924,7 +1872,7 @@ async function buildMinecraftElement(
 
 
         for (
-            const point of converted
+            const point of convertedUV
         ) {
 
             uvs.push(
@@ -1936,10 +1884,7 @@ async function buildMinecraftElement(
 
 
         /*
-         * WICHTIG:
-         *
-         * Jede Fläche bekommt genau
-         * vier Vertices.
+         * Zwei Dreiecke pro Fläche.
          */
 
         indices.push(
@@ -2003,13 +1948,9 @@ async function buildMinecraftElement(
     ) {
 
         geometry.addGroup(
-
             i * 6,
-
             6,
-
             i
-
         );
 
     }
@@ -2020,151 +1961,172 @@ async function buildMinecraftElement(
 
     const mesh =
         new THREE.Mesh(
-
             geometry,
-
             materials
-
         );
 
 
     /*
-     * Minecraft Element Rotation
+     * ==========================================
+     * ROTATION
+     * ==========================================
      *
-     * Das Element wird um den angegebenen
-     * Ursprung gedreht.
+     * Wir verwenden eine eigene Group.
+     *
+     * Damit rotiert das gesamte Element
+     * wirklich um seinen Minecraft-Origin.
      */
+
+    let elementParent =
+        parentGroup;
+
 
     if (element.rotation) {
 
-        applyMinecraftRotation(
-            mesh,
-            element.rotation
-        );
-
-    }
+        const rotation =
+            element.rotation;
 
 
-    group.add(mesh);
-
-}
-
-
-
-/* ============================================================
-   MINECRAFT ROTATION
-   ============================================================ */
-
-function applyMinecraftRotation(
-    mesh,
-    rotation
-) {
-
-    const origin =
-        rotation.origin || [
-            8,
-            8,
-            8
-        ];
+        const origin =
+            rotation.origin || [
+                8,
+                8,
+                8
+            ];
 
 
-    /*
-     * Minecraft-Koordinaten auf
-     * unsere Koordinaten umrechnen.
-     */
-
-    mesh.position.set(
-
-        origin[0],
-        origin[1],
-        -origin[2]
-
-    );
+        const rotationGroup =
+            new THREE.Group();
 
 
-    /*
-     * Rotation.
-     */
+        /*
+         * Origin in unserem Koordinatensystem.
+         */
 
-    const angle =
-        THREE.MathUtils.degToRad(
-            rotation.angle || 0
-        );
+        const originVector =
+            new THREE.Vector3(
 
+                origin[0],
+                origin[1],
+                -origin[2]
 
-    switch (
-        rotation.axis
-    ) {
-
-        case "x":
-
-            mesh.rotation.x =
-                angle;
-
-            break;
-
-
-        case "y":
-
-            mesh.rotation.y =
-                -angle;
-
-            break;
-
-
-        case "z":
-
-            mesh.rotation.z =
-                -angle;
-
-            break;
-
-    }
-
-
-    /*
-     * Das Mesh muss relativ zum
-     * Ursprung positioniert werden.
-     */
-
-    mesh.geometry.translate(
-
-        -origin[0],
-        -origin[1],
-        origin[2]
-
-    );
-
-
-    /*
-     * rescale berücksichtigen.
-     */
-
-    if (
-        rotation.rescale
-    ) {
-
-        const scale =
-            1 /
-            Math.cos(
-                Math.abs(angle)
             );
 
 
-        mesh.scale.set(
-            scale,
-            scale,
-            scale
+        /*
+         * Gruppe an den Origin setzen.
+         */
+
+        rotationGroup.position.copy(
+            originVector
         );
 
+
+        /*
+         * Mesh relativ zum Origin
+         * verschieben.
+         */
+
+        mesh.position.set(
+
+            -originVector.x,
+            -originVector.y,
+            -originVector.z
+
+        );
+
+
+        rotationGroup.add(
+            mesh
+        );
+
+
+        /*
+         * Minecraft-Rotation.
+         */
+
+        const angle =
+            THREE.MathUtils.degToRad(
+                rotation.angle || 0
+            );
+
+
+        if (
+            rotation.axis === "x"
+        ) {
+
+            rotationGroup.rotation.x =
+                angle;
+
+        }
+
+        else if (
+            rotation.axis === "y"
+        ) {
+
+            rotationGroup.rotation.y =
+                -angle;
+
+        }
+
+        else if (
+            rotation.axis === "z"
+        ) {
+
+            rotationGroup.rotation.z =
+                -angle;
+
+        }
+
+
+        /*
+         * Minecraft rescale.
+         */
+
+        if (
+            rotation.rescale
+        ) {
+
+            const scale =
+                1 /
+                Math.cos(
+                    Math.abs(angle)
+                );
+
+
+            rotationGroup.scale.set(
+                scale,
+                scale,
+                scale
+            );
+
+        }
+
+
+        elementParent =
+            rotationGroup;
+
+
+        parentGroup.add(
+            rotationGroup
+        );
+
+
+        return;
+
     }
+
+
+    parentGroup.add(
+        mesh
+    );
 
 }
 
 
 
 /* ============================================================
-   UV
+   DEFAULT UV
    ============================================================ */
 
 function getDefaultUV(
@@ -2299,7 +2261,7 @@ function convertUV(
 
 
 /* ============================================================
-   MODEL BAUEN
+   MODEL
    ============================================================ */
 
 async function buildMinecraftModel(
@@ -2324,13 +2286,9 @@ async function buildMinecraftModel(
     ) {
 
         await buildMinecraftElement(
-
             element,
-
             json,
-
             group
-
         );
 
     }
@@ -2340,15 +2298,103 @@ async function buildMinecraftModel(
 
 
 /* ============================================================
-   PREVIEW RENDERER
+   MODEL ZENTRIEREN
    ============================================================ */
+
+function centerModel(
+    group,
+    camera,
+    controls
+) {
+
+    const box =
+        new THREE.Box3()
+            .setFromObject(group);
+
+
+    if (box.isEmpty()) {
+        return;
+    }
+
+
+    const center =
+        box.getCenter(
+            new THREE.Vector3()
+        );
+
+
+    const size =
+        box.getSize(
+            new THREE.Vector3()
+        );
+
+
+    /*
+     * Nur das komplette Modell verschieben.
+     * Die einzelnen Elemente bleiben
+     * exakt an ihren Minecraft-Positionen.
+     */
+
+    group.position.sub(
+        center
+    );
+
+
+    const maxSize =
+        Math.max(
+            size.x,
+            size.y,
+            size.z
+        );
+
+
+    const distance =
+        Math.max(
+            22,
+            maxSize * 2.5
+        );
+
+
+    camera.position.set(
+
+        distance,
+        distance * 0.65,
+        distance
+
+    );
+
+
+    controls.target.set(
+        0,
+        0,
+        0
+    );
+
+
+    controls.update();
+
+}
+
+
+
+/* ============================================================
+   PREVIEW
+   ============================================================ */
+
+/*
+ * WICHTIG:
+ *
+ * Nur EIN WebGLRenderer für alle Karten.
+ *
+ * Dadurch entstehen nicht hunderte
+ * WebGL-Kontexte.
+ */
 
 let previewRenderer = null;
 
 let previewScene = null;
 
 let previewCamera = null;
-
 
 
 function createPreviewRenderer() {
@@ -2363,16 +2409,14 @@ function createPreviewRenderer() {
 
             antialias: true,
 
-            alpha: false,
-
-            preserveDrawingBuffer: true
+            alpha: false
 
         });
 
 
     previewRenderer.setSize(
-        220,
-        220
+        240,
+        240
     );
 
 
@@ -2395,21 +2439,16 @@ function createPreviewRenderer() {
 
     previewScene.background =
         new THREE.Color(
-            0x1b1f26
+            0x171a20
         );
 
 
     previewCamera =
         new THREE.PerspectiveCamera(
-
             35,
-
             1,
-
             0.1,
-
             1000
-
         );
 
 }
@@ -2417,7 +2456,7 @@ function createPreviewRenderer() {
 
 
 /* ============================================================
-   LIGHT
+   LIGHTING
    ============================================================ */
 
 function addLighting(scene) {
@@ -2426,124 +2465,58 @@ function addLighting(scene) {
 
         new THREE.AmbientLight(
             0xffffff,
-            2
+            2.2
         )
 
     );
 
 
-    const light =
+    const keyLight =
         new THREE.DirectionalLight(
             0xffffff,
-            2
+            2.4
         );
 
 
-    light.position.set(
+    keyLight.position.set(
         30,
         40,
         30
     );
 
 
-    scene.add(light);
+    scene.add(
+        keyLight
+    );
+
+
+    const fillLight =
+        new THREE.DirectionalLight(
+            0x9dbbff,
+            0.7
+        );
+
+
+    fillLight.position.set(
+        -30,
+        20,
+        -20
+    );
+
+
+    scene.add(
+        fillLight
+    );
 
 }
 
 
 
 /* ============================================================
-   OBJECT ZENTRIEREN
+   PREVIEWS ERSTELLEN
    ============================================================ */
 
-function centerObject(
-    object,
-    camera,
-    controls
-) {
-
-    const box =
-        new THREE.Box3()
-            .setFromObject(object);
-
-
-    if (box.isEmpty()) {
-        return;
-    }
-
-
-    const center =
-        box.getCenter(
-            new THREE.Vector3()
-        );
-
-
-    const size =
-        box.getSize(
-            new THREE.Vector3()
-        );
-
-
-    /*
-     * Das komplette Modell wird verschoben.
-     * Nicht einzelne Minecraft-Elemente.
-     */
-
-    object.position.sub(center);
-
-
-    const maxSize =
-        Math.max(
-            size.x,
-            size.y,
-            size.z
-        );
-
-
-    const distance =
-        Math.max(
-            25,
-            maxSize * 2.8
-        );
-
-
-    camera.position.set(
-
-        distance,
-        distance * 0.7,
-        distance
-
-    );
-
-
-    camera.lookAt(
-        0,
-        0,
-        0
-    );
-
-
-    if (controls) {
-
-        controls.target.set(
-            0,
-            0,
-            0
-        );
-
-        controls.update();
-
-    }
-
-}
-
-
-
-/* ============================================================
-   PREVIEWS
-   ============================================================ */
-
-async function generatePreviewImages() {
+async function generatePreviews() {
 
     createPreviewRenderer();
 
@@ -2562,8 +2535,8 @@ async function generatePreviewImages() {
 
         const image =
             images.find(
-                img =>
-                    img.dataset.modelPath ===
+                item =>
+                    item.dataset.modelPath ===
                     model.path
             );
 
@@ -2617,14 +2590,63 @@ async function generatePreviewImages() {
             );
 
 
-            centerObject(
+            /*
+             * Für die Karten eine feste,
+             * leicht schräge Perspektive.
+             */
 
-                group,
+            const box =
+                new THREE.Box3()
+                    .setFromObject(group);
 
-                previewCamera,
 
-                null
+            if (
+                box.isEmpty()
+            ) {
 
+                continue;
+
+            }
+
+
+            const center =
+                box.getCenter(
+                    new THREE.Vector3()
+                );
+
+
+            const size =
+                box.getSize(
+                    new THREE.Vector3()
+                );
+
+
+            group.position.sub(
+                center
+            );
+
+
+            const maxSize =
+                Math.max(
+                    size.x,
+                    size.y,
+                    size.z
+                );
+
+
+            previewCamera.position.set(
+
+                maxSize * 2.4,
+                maxSize * 1.6,
+                maxSize * 2.4
+
+            );
+
+
+            previewCamera.lookAt(
+                0,
+                0,
+                0
             );
 
 
@@ -2649,7 +2671,7 @@ async function generatePreviewImages() {
         catch (error) {
 
             console.error(
-                "Preview-Fehler:",
+                "Preview konnte nicht gerendert werden:",
                 model.path,
                 error
             );
@@ -2683,14 +2705,17 @@ async function openViewer(model) {
         "flex";
 
 
+    /*
+     * Layout zuerst sichtbar machen,
+     * damit die Größe stimmt.
+     */
+
     const width =
-        viewerContainer.clientWidth ||
-        800;
+        viewerContainer.clientWidth;
 
 
     const height =
-        viewerContainer.clientHeight ||
-        600;
+        viewerContainer.clientHeight;
 
 
     const renderer =
@@ -2746,7 +2771,7 @@ async function openViewer(model) {
 
     scene.background =
         new THREE.Color(
-            0x1b1f26
+            0x171a20
         );
 
 
@@ -2779,7 +2804,6 @@ async function openViewer(model) {
         new THREE.OrbitControls(
 
             camera,
-
             renderer.domElement
 
         );
@@ -2809,7 +2833,13 @@ async function openViewer(model) {
         new THREE.Group();
 
 
-    scene.add(group);
+    scene.add(
+        group
+    );
+
+
+    state.viewer.model =
+        group;
 
 
     try {
@@ -2835,14 +2865,10 @@ async function openViewer(model) {
         );
 
 
-        centerObject(
-
+        centerModel(
             group,
-
             camera,
-
             controls
-
         );
 
     }
@@ -2850,6 +2876,7 @@ async function openViewer(model) {
     catch (error) {
 
         console.error(
+            "Viewer-Fehler:",
             error
         );
 
@@ -2869,7 +2896,7 @@ async function openViewer(model) {
 
 
 /* ============================================================
-   ANIMATION
+   VIEWER ANIMATION
    ============================================================ */
 
 function animateViewer() {
@@ -2956,8 +2983,10 @@ function closeViewer() {
     state.viewer.scene =
         null;
 
-
     state.viewer.camera =
+        null;
+
+    state.viewer.model =
         null;
 
 
@@ -3010,11 +3039,6 @@ function toggleViewerSelection() {
 }
 
 
-
-/* ============================================================
-   VIEWER BUTTON
-   ============================================================ */
-
 function updateViewerButton() {
 
     const path =
@@ -3030,9 +3054,7 @@ function updateViewerButton() {
     viewerSelectButton.textContent =
 
         selected
-
             ? "✓ Modell ausgewählt"
-
             : "＋ Modell auswählen";
 
 }
@@ -3092,7 +3114,5 @@ window.addEventListener(
 
 </script>
 
-
 </body>
-
 </html>
