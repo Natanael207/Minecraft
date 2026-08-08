@@ -360,11 +360,13 @@
 		{
 			"name": "furnace",
 			"origin": [8, 8, 8],
+			"scope": 0,
 			"color": 0,
 			"children": [
 				{
 					"name": "Front",
 					"origin": [0, 0, 0],
+					"scope": 0,
 					"color": 0,
 					"children": [
 						0,
@@ -379,6 +381,7 @@
 						{
 							"name": "Inside",
 							"origin": [3, 13, 0],
+							"scope": 0,
 							"color": 0,
 							"children": [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
 						}

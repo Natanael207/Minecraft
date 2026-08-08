@@ -1,4 +1,5 @@
 {
+	"format_version": "1.21.11",
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "block/white_stained_glass",
@@ -261,7 +262,7 @@
 			"rotation": [0, -180, 0]
 		},
 		"firstperson_lefthand": {
-			"rotation": [0, 180, 0]
+			"rotation": [0, -180, 0]
 		},
 		"ground": {
 			"rotation": [0, 90, 0],
@@ -284,32 +285,28 @@
 		{
 			"name": "Flugzeug",
 			"origin": [8, 8, 8],
+			"scope": 0,
 			"color": 0,
-			"nbt": "{}",
-			"armAnimationEnabled": false,
 			"children": [
 				{
 					"name": "Main",
 					"origin": [8, 8, 8],
+					"scope": 0,
 					"color": 0,
-					"nbt": "{}",
-					"armAnimationEnabled": false,
 					"children": [0, 1, 2, 3, 4, 5, 6, 7]
 				},
 				{
 					"name": "Flügel",
 					"origin": [8, 8, 8],
+					"scope": 0,
 					"color": 0,
-					"nbt": "{}",
-					"armAnimationEnabled": false,
 					"children": [8]
 				},
 				{
 					"name": "Stützen",
 					"origin": [8, 8, 8],
+					"scope": 0,
 					"color": 0,
-					"nbt": "{}",
-					"armAnimationEnabled": false,
 					"children": [9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
 				}
 			]
