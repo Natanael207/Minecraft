@@ -2,26 +2,52 @@
 <html lang="de">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Model Generator</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
 
     <!-- Three.js r147 -->
     <script src="lib/three.min.js"></script>
     <script src="lib/OrbitControls.js"></script>
+
 </head>
+
 
 <body>
 
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
 <header class="site-header">
 
-    <a href="index.html" class="site-logo">
-        <div class="site-logo-icon">◆</div>
-        <span>Custom Resourcepack Tools</span>
+    <a
+        href="index.html"
+        class="site-logo"
+    >
+
+        <div class="site-logo-icon">
+            ◆
+        </div>
+
+        <span>
+            Custom Resourcepack Tools
+        </span>
+
     </a>
+
 
     <div class="header-right">
 
@@ -30,44 +56,67 @@
             class="nav-button"
             type="button"
         >
+
             Generatoren
-            <span class="arrow">▼</span>
+
+            <span class="arrow">
+                ▼
+            </span>
+
         </button>
 
     </div>
 
-    <div id="generatorFlyout" class="generator-flyout">
+
+    <div
+        id="generatorFlyout"
+        class="generator-flyout"
+    >
 
         <div class="flyout-header">
             Generator auswählen
         </div>
+
 
         <button
             class="generator-option active"
             type="button"
             onclick="location.href='model-generator.html'"
         >
-            <div class="generator-icon">🧱</div>
+
+            <div class="generator-icon">
+                🧱
+            </div>
+
 
             <div class="generator-text">
+
                 <div class="generator-title">
                     Model Generator
                 </div>
 
                 <div class="generator-description">
-                    Modelle aus einem Resourcepack anzeigen.
+                    Modelle aus models/item und models/block anzeigen.
                 </div>
+
             </div>
+
         </button>
+
 
         <button
             class="generator-option"
             type="button"
             onclick="location.href='item-generator.html'"
         >
-            <div class="generator-icon">🧩</div>
+
+            <div class="generator-icon">
+                🧩
+            </div>
+
 
             <div class="generator-text">
+
                 <div class="generator-title">
                     Item Generator
                 </div>
@@ -75,7 +124,9 @@
                 <div class="generator-description">
                     Modelle aus /items/ anzeigen.
                 </div>
+
             </div>
+
         </button>
 
     </div>
@@ -83,7 +134,13 @@
 </header>
 
 
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
 <main class="site-main">
+
 
     <section class="page-heading">
 
@@ -91,25 +148,29 @@
             Minecraft Resourcepack Tools
         </div>
 
+
         <h1>
             Model Generator
         </h1>
 
+
         <p class="page-description">
-            Durchsuche die Item- und Block-Models deines
-            Minecraft Resourcepacks.
+            Durchsuche die Item- und Block-Models
+            deines Minecraft Resourcepacks.
         </p>
 
     </section>
 
 
-    <!-- ==================================================
-         RESOURCEPACK LADEN
-    ================================================== -->
+
+    <!-- =====================================================
+         RESOURCEPACK
+    ====================================================== -->
 
     <section class="loader-panel">
 
         <div class="loader-content">
+
 
             <div class="loader-info">
 
@@ -117,21 +178,42 @@
                     Resourcepack laden
                 </div>
 
+
                 <div class="loader-description">
-                    Wähle den entpackten Resourcepack-Ordner.
+
+                    Wähle den entpackten
+                    Resourcepack-Ordner.
+
+                    <br>
+
                     Es werden automatisch
-                    <code>models/item</code> und
-                    <code>models/block</code> durchsucht.
+
+                    <code>
+                        assets/minecraft/models/item
+                    </code>
+
+                    und
+
+                    <code>
+                        assets/minecraft/models/block
+                    </code>
+
+                    durchsucht.
+
                 </div>
 
             </div>
+
 
             <label
                 for="resourcepackInput"
                 class="load-button"
             >
+
                 Resourcepack auswählen
+
             </label>
+
 
             <input
                 id="resourcepackInput"
@@ -143,25 +225,43 @@
 
         </div>
 
-        <div id="loadedPack" class="loaded-pack"></div>
+
+        <div
+            id="loadedPack"
+            class="loaded-pack"
+        ></div>
 
     </section>
 
 
-    <div id="status" class="status"></div>
+
+    <!-- =====================================================
+         STATUS
+    ====================================================== -->
+
+    <div
+        id="status"
+        class="status"
+    ></div>
 
 
-    <!-- ==================================================
+
+    <!-- =====================================================
          TOOLBAR
-    ================================================== -->
+    ====================================================== -->
 
-    <div id="toolbar" class="toolbar">
+    <div
+        id="toolbar"
+        class="toolbar"
+    >
+
 
         <div class="search">
 
             <span class="search-icon">
                 🔍
             </span>
+
 
             <input
                 id="searchInput"
@@ -172,7 +272,12 @@
 
         </div>
 
-        <select id="sortSelect" class="sort-select">
+
+
+        <select
+            id="sortSelect"
+            class="sort-select"
+        >
 
             <option value="name">
                 Name
@@ -188,18 +293,26 @@
 
         </select>
 
-        <div id="itemCount" class="item-count">
+
+        <div
+            id="itemCount"
+            class="item-count"
+        >
             0 Modelle
         </div>
 
     </div>
 
 
-    <!-- ==================================================
-         KATEGORIEN
-    ================================================== -->
 
-    <div id="categoryTabs" class="category-tabs">
+    <!-- =====================================================
+         CATEGORIES
+    ====================================================== -->
+
+    <div
+        id="categoryTabs"
+        class="category-tabs"
+    >
 
         <button
             class="category-button active"
@@ -209,6 +322,7 @@
             Alle
         </button>
 
+
         <button
             class="category-button"
             data-category="item"
@@ -216,6 +330,7 @@
         >
             Item Models
         </button>
+
 
         <button
             class="category-button"
@@ -228,22 +343,36 @@
     </div>
 
 
-    <!-- ==================================================
-         MODEL GRID
-    ================================================== -->
 
-    <section id="itemsGrid" class="items-grid"></section>
+    <!-- =====================================================
+         GRID
+    ====================================================== -->
+
+    <section
+        id="itemsGrid"
+        class="items-grid"
+    ></section>
 
 
-    <section id="emptyState" class="empty visible">
+
+    <!-- =====================================================
+         EMPTY
+    ====================================================== -->
+
+    <section
+        id="emptyState"
+        class="empty visible"
+    >
 
         <div class="empty-icon">
             🧱
         </div>
 
+
         <h2>
             Noch kein Resourcepack geladen
         </h2>
+
 
         <p>
             Wähle oben einen Resourcepack-Ordner aus,
@@ -255,19 +384,30 @@
 </main>
 
 
-<!-- ====================================================
-     MODEL MODAL
-===================================================== -->
 
-<div id="modelModal" class="modal-overlay">
+<!-- =========================================================
+     MODEL MODAL
+========================================================= -->
+
+<div
+    id="modelModal"
+    class="modal-overlay"
+>
+
 
     <div class="modal">
 
+
         <div class="modal-header">
 
-            <div id="modalTitle" class="modal-title">
+
+            <div
+                id="modalTitle"
+                class="modal-title"
+            >
                 Model
             </div>
+
 
             <button
                 id="closeModal"
@@ -280,7 +420,9 @@
         </div>
 
 
+
         <div class="modal-body">
+
 
             <div class="model-viewer">
 
@@ -292,24 +434,33 @@
             </div>
 
 
+
             <div class="detail-info">
 
-                <h3 id="modalModelName">
+
+                <h3
+                    id="modalModelName"
+                >
                     Model
                 </h3>
+
 
                 <div
                     id="modalFilePath"
                     class="detail-file"
                 ></div>
 
+
                 <div class="detail-section-title">
                     JSON
                 </div>
 
+
                 <div class="json-container">
 
-                    <pre id="modalJson"></pre>
+                    <pre
+                        id="modalJson"
+                    ></pre>
 
                 </div>
 
@@ -318,7 +469,9 @@
         </div>
 
 
+
         <div class="modal-footer">
+
 
             <button
                 id="closeModalButton"
@@ -327,6 +480,7 @@
             >
                 Schließen
             </button>
+
 
             <button
                 id="selectModelButton"
@@ -343,13 +497,17 @@
 </div>
 
 
+
 <script>
+
 
 /* =========================================================
    THREE.JS CHECK
 ========================================================= */
 
-if (typeof THREE === "undefined") {
+if (
+    typeof THREE === "undefined"
+) {
 
     alert(
         "Three.js konnte nicht geladen werden.\n\n" +
@@ -358,6 +516,7 @@ if (typeof THREE === "undefined") {
     );
 
 }
+
 
 if (
     typeof THREE !== "undefined" &&
@@ -371,6 +530,7 @@ if (
     );
 
 }
+
 
 
 /* =========================================================
@@ -395,9 +555,16 @@ const state = {
 
     modalAnimation: null,
 
-    modalResizeHandler: null
+    modalResizeHandler: null,
+
+    previewRenderer: null,
+
+    previewScene: null,
+
+    previewCamera: null
 
 };
+
 
 
 /* =========================================================
@@ -407,74 +574,124 @@ const state = {
 const elements = {
 
     resourcepackInput:
-        document.getElementById("resourcepackInput"),
+        document.getElementById(
+            "resourcepackInput"
+        ),
 
     loadedPack:
-        document.getElementById("loadedPack"),
+        document.getElementById(
+            "loadedPack"
+        ),
 
     status:
-        document.getElementById("status"),
+        document.getElementById(
+            "status"
+        ),
 
     toolbar:
-        document.getElementById("toolbar"),
+        document.getElementById(
+            "toolbar"
+        ),
 
     categoryTabs:
-        document.getElementById("categoryTabs"),
+        document.getElementById(
+            "categoryTabs"
+        ),
 
     searchInput:
-        document.getElementById("searchInput"),
+        document.getElementById(
+            "searchInput"
+        ),
 
     sortSelect:
-        document.getElementById("sortSelect"),
+        document.getElementById(
+            "sortSelect"
+        ),
 
     itemCount:
-        document.getElementById("itemCount"),
+        document.getElementById(
+            "itemCount"
+        ),
 
     itemsGrid:
-        document.getElementById("itemsGrid"),
+        document.getElementById(
+            "itemsGrid"
+        ),
 
     emptyState:
-        document.getElementById("emptyState"),
+        document.getElementById(
+            "emptyState"
+        ),
 
     modelModal:
-        document.getElementById("modelModal"),
+        document.getElementById(
+            "modelModal"
+        ),
 
     modalTitle:
-        document.getElementById("modalTitle"),
+        document.getElementById(
+            "modalTitle"
+        ),
 
     modalModelName:
-        document.getElementById("modalModelName"),
+        document.getElementById(
+            "modalModelName"
+        ),
 
     modalFilePath:
-        document.getElementById("modalFilePath"),
+        document.getElementById(
+            "modalFilePath"
+        ),
 
     modalJson:
-        document.getElementById("modalJson"),
+        document.getElementById(
+            "modalJson"
+        ),
 
     modalViewer:
-        document.getElementById("modalViewer"),
+        document.getElementById(
+            "modalViewer"
+        ),
 
     closeModal:
-        document.getElementById("closeModal"),
+        document.getElementById(
+            "closeModal"
+        ),
 
     closeModalButton:
-        document.getElementById("closeModalButton"),
+        document.getElementById(
+            "closeModalButton"
+        ),
 
     selectModelButton:
-        document.getElementById("selectModelButton")
+        document.getElementById(
+            "selectModelButton"
+        )
 
 };
+
 
 
 /* =========================================================
    TEXTURE CACHE
 ========================================================= */
 
-const textureCache = new Map();
+const textureCache =
+    new Map();
+
 
 
 /* =========================================================
-   RESOURCEPACK
+   FILE CACHE
+========================================================= */
+
+const filePathCache =
+    new Map();
+
+
+
+/* =========================================================
+   RESOURCEPACK INPUT
 ========================================================= */
 
 elements.resourcepackInput.addEventListener(
@@ -483,36 +700,82 @@ elements.resourcepackInput.addEventListener(
 );
 
 
-async function handleResourcepackSelection(event) {
+
+async function handleResourcepackSelection(
+    event
+) {
 
     const files =
-        Array.from(event.target.files);
+        Array.from(
+            event.target.files
+        );
+
 
     if (!files.length) {
+
         return;
+
     }
 
-    state.files = files;
 
-    state.models = [];
+    state.files =
+        files;
+
+
+    state.models =
+        [];
+
 
     state.selectedModels.clear();
+
+
+    filePathCache.clear();
+
 
     setStatus(
         "Resourcepack wird durchsucht...",
         "visible"
     );
 
+
+    /*
+     * Alle Dateien einmal normalisieren.
+     */
+
+    for (
+        const file of files
+    ) {
+
+        const path =
+            getRelativePath(file);
+
+
+        filePathCache.set(
+            path.toLowerCase(),
+            file
+        );
+
+    }
+
+
     const models =
         await findModels(files);
 
-    state.models = models;
 
-    updateLoadedPackInfo(files);
+    state.models =
+        models;
+
+
+    updateLoadedPackInfo(
+        files
+    );
+
 
     showGeneratorUI();
 
+
     applyFilters();
+
 
     if (!models.length) {
 
@@ -521,56 +784,139 @@ async function handleResourcepackSelection(event) {
             "visible error"
         );
 
-    } else {
-
-        setStatus(
-            `${models.length} Modelle gefunden.`,
-            "visible success"
-        );
+        return;
 
     }
 
+
+    setStatus(
+        `${models.length} Modelle gefunden.`,
+        "visible success"
+    );
+
+
+    /*
+     * Vorschau-Renderer erst nach dem
+     * Laden der Modelle erzeugen.
+     */
+
+    setTimeout(
+        generatePreviewImages,
+        50
+    );
+
 }
+
+
+
+/* =========================================================
+   RELATIVE PATH
+========================================================= */
+
+function getRelativePath(
+    file
+) {
+
+    let path =
+        file.webkitRelativePath ||
+        file.name;
+
+
+    path =
+        path.replace(
+            /\\/g,
+            "/"
+        );
+
+
+    /*
+     * Wenn der ausgewählte Ordner z.B.
+     *
+     * MyPack/assets/minecraft/...
+     *
+     * heißt, entfernen wir MyPack/.
+     */
+
+    const assetsIndex =
+        path.indexOf(
+            "assets/"
+        );
+
+
+    if (
+        assetsIndex !== -1
+    ) {
+
+        path =
+            path.substring(
+                assetsIndex
+            );
+
+    }
+
+
+    return path;
+
+}
+
 
 
 /* =========================================================
    FIND MODELS
 ========================================================= */
 
-async function findModels(files) {
+async function findModels(
+    files
+) {
 
     const models = [];
 
-    for (const file of files) {
+
+    for (
+        const file of files
+    ) {
 
         const path =
             getRelativePath(file);
 
+
         const normalizedPath =
-            path.replace(/\\/g, "/");
+            path.toLowerCase();
+
 
         const match =
             normalizedPath.match(
-                /assets\/minecraft\/models\/(item|block)\/(.+\.json)$/i
+                /^assets\/minecraft\/models\/(item|block)\/(.+\.json)$/i
             );
 
+
         if (!match) {
+
             continue;
+
         }
+
 
         try {
 
             const text =
                 await file.text();
 
+
             const json =
                 JSON.parse(text);
+
 
             const type =
                 match[1].toLowerCase();
 
+
             const relativePath =
-                match[2];
+                path.substring(
+                    `assets/minecraft/models/${type}/`
+                        .length
+                );
+
 
             const name =
                 relativePath
@@ -580,6 +926,7 @@ async function findModels(files) {
                         /\.json$/i,
                         ""
                     );
+
 
             models.push({
 
@@ -591,18 +938,20 @@ async function findModels(files) {
 
                 name,
 
-                path:
-                    normalizedPath,
+                path,
 
                 relativePath
 
             });
 
-        } catch (error) {
+
+        } catch (
+            error
+        ) {
 
             console.warn(
                 "Ungültiges Model:",
-                normalizedPath,
+                path,
                 error
             );
 
@@ -610,27 +959,65 @@ async function findModels(files) {
 
     }
 
+
     return models;
 
 }
 
 
+
 /* =========================================================
-   PATH
+   LOADED PACK INFO
 ========================================================= */
 
-function getRelativePath(file) {
+function updateLoadedPackInfo(
+    files
+) {
 
-    return (
-        file.webkitRelativePath ||
-        file.name
+    let firstPath =
+        files.length
+            ? (
+                files[0]
+                    .webkitRelativePath ||
+                files[0].name
+            )
+            : "";
+
+
+    const rootFolder =
+        firstPath
+            .split("/")
+            [0];
+
+
+    elements.loadedPack.innerHTML = `
+
+        <strong>
+            Geladen:
+        </strong>
+
+        ${escapeHtml(rootFolder)}
+
+        <br>
+
+        <span>
+            ${files.length}
+            Dateien durchsucht
+        </span>
+
+    `;
+
+
+    elements.loadedPack.classList.add(
+        "visible"
     );
 
 }
 
 
+
 /* =========================================================
-   UI
+   SHOW UI
 ========================================================= */
 
 function showGeneratorUI() {
@@ -639,9 +1026,11 @@ function showGeneratorUI() {
         "visible"
     );
 
+
     elements.categoryTabs.classList.add(
         "visible"
     );
+
 
     elements.emptyState.classList.remove(
         "visible"
@@ -649,33 +1038,6 @@ function showGeneratorUI() {
 
 }
 
-
-/* =========================================================
-   LOADED PACK
-========================================================= */
-
-function updateLoadedPackInfo(files) {
-
-    const firstPath =
-        getRelativePath(files[0]);
-
-    const rootFolder =
-        firstPath.split("/")[0];
-
-    elements.loadedPack.innerHTML = `
-        <strong>Geladen:</strong>
-        ${escapeHtml(rootFolder)}
-        <br>
-        <span>
-            ${files.length} Dateien durchsucht
-        </span>
-    `;
-
-    elements.loadedPack.classList.add(
-        "visible"
-    );
-
-}
 
 
 /* =========================================================
@@ -687,6 +1049,7 @@ elements.searchInput.addEventListener(
     applyFilters
 );
 
+
 elements.sortSelect.addEventListener(
     "change",
     applyFilters
@@ -694,36 +1057,45 @@ elements.sortSelect.addEventListener(
 
 
 document
-    .querySelectorAll(".category-button")
-    .forEach(button => {
+    .querySelectorAll(
+        ".category-button"
+    )
+    .forEach(
+        button => {
 
-        button.addEventListener(
-            "click",
-            () => {
+            button.addEventListener(
+                "click",
+                () => {
 
-                document
-                    .querySelectorAll(
-                        ".category-button"
-                    )
-                    .forEach(button =>
-                        button.classList.remove(
-                            "active"
+                    document
+                        .querySelectorAll(
+                            ".category-button"
                         )
+                        .forEach(
+                            button =>
+                                button.classList.remove(
+                                    "active"
+                                )
+                        );
+
+
+                    button.classList.add(
+                        "active"
                     );
 
-                button.classList.add(
-                    "active"
-                );
 
-                state.activeCategory =
-                    button.dataset.category;
+                    state.activeCategory =
+                        button.dataset.category;
 
-                applyFilters();
 
-            }
-        );
+                    applyFilters();
 
-    });
+                }
+            );
+
+        }
+    );
+
 
 
 function applyFilters() {
@@ -733,12 +1105,14 @@ function applyFilters() {
             .trim()
             .toLowerCase();
 
+
     let models =
         [...state.models];
 
 
     if (
-        state.activeCategory !== "all"
+        state.activeCategory !==
+        "all"
     ) {
 
         models =
@@ -756,6 +1130,7 @@ function applyFilters() {
         models =
             models.filter(
                 model =>
+
                     model.name
                         .toLowerCase()
                         .includes(search)
@@ -774,52 +1149,66 @@ function applyFilters() {
         elements.sortSelect.value;
 
 
-    models.sort((a, b) => {
+    models.sort(
+        (a, b) => {
 
-        if (sort === "path") {
+            if (
+                sort === "path"
+            ) {
 
-            return a.path.localeCompare(
-                b.path
+                return a.path.localeCompare(
+                    b.path
+                );
+
+            }
+
+
+            if (
+                sort === "type"
+            ) {
+
+                return a.type.localeCompare(
+                    b.type
+                );
+
+            }
+
+
+            return a.name.localeCompare(
+                b.name
             );
 
         }
-
-        if (sort === "type") {
-
-            return a.type.localeCompare(
-                b.type
-            );
-
-        }
-
-        return a.name.localeCompare(
-            b.name
-        );
-
-    });
+    );
 
 
     state.filteredModels =
         models;
+
 
     renderModels();
 
 }
 
 
+
 /* =========================================================
-   RENDER MODEL CARDS
+   RENDER CARDS
 ========================================================= */
 
 function renderModels() {
 
-    elements.itemsGrid.innerHTML = "";
+    elements.itemsGrid.innerHTML =
+        "";
+
 
     elements.itemCount.textContent =
         `${state.filteredModels.length} Modelle`;
 
 
-    if (!state.filteredModels.length) {
+    if (
+        !state.filteredModels.length
+    ) {
 
         elements.emptyState.classList.add(
             "visible"
@@ -845,17 +1234,34 @@ function renderModels() {
 
     }
 
+
+    /*
+     * Nach dem DOM-Aufbau die
+     * Vorschau-Bilder erzeugen.
+     */
+
+    setTimeout(
+        generatePreviewImages,
+        10
+    );
+
 }
+
 
 
 /* =========================================================
    MODEL CARD
 ========================================================= */
 
-function createModelCard(model) {
+function createModelCard(
+    model
+) {
 
     const card =
-        document.createElement("article");
+        document.createElement(
+            "article"
+        );
+
 
     card.className =
         "item-card";
@@ -876,15 +1282,23 @@ function createModelCard(model) {
     }
 
 
-    /* Checkbox */
+    /*
+     * Checkbox
+     */
 
     const checkbox =
-        document.createElement("input");
+        document.createElement(
+            "input"
+        );
 
-    checkbox.type = "checkbox";
+
+    checkbox.type =
+        "checkbox";
+
 
     checkbox.className =
         "model-checkbox";
+
 
     checkbox.checked =
         selected;
@@ -913,109 +1327,168 @@ function createModelCard(model) {
     );
 
 
-    /* Preview */
+
+    /*
+     * Preview
+     */
 
     const preview =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     preview.className =
         "item-preview";
 
 
-    const canvas =
-        document.createElement("canvas");
-
-    canvas.width = 240;
-
-    canvas.height = 180;
-
-    canvas.className =
-        "model-preview-canvas";
+    const image =
+        document.createElement(
+            "img"
+        );
 
 
-    preview.appendChild(canvas);
+    image.className =
+        "model-preview-image";
 
 
-    /* Name */
+    image.alt =
+        model.name;
+
+
+    image.dataset.modelPath =
+        model.path;
+
+
+    preview.appendChild(
+        image
+    );
+
+
+
+    /*
+     * Name
+     */
 
     const name =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     name.className =
         "item-name";
+
 
     name.textContent =
         model.name;
 
 
-    /* Path */
+
+    /*
+     * Path
+     */
 
     const path =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     path.className =
         "item-path";
+
 
     path.textContent =
         model.relativePath;
 
 
-    /* Type */
+
+    /*
+     * Type
+     */
 
     const type =
-        document.createElement("span");
+        document.createElement(
+            "span"
+        );
+
 
     type.className =
         "item-type";
+
 
     type.textContent =
         model.type.toUpperCase();
 
 
-    /* Selected badge */
+
+    /*
+     * Selected badge
+     */
 
     const badge =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     badge.className =
         "selected-badge";
+
 
     badge.textContent =
         "✓";
 
 
-    card.appendChild(checkbox);
 
-    card.appendChild(badge);
+    card.appendChild(
+        checkbox
+    );
 
-    card.appendChild(preview);
 
-    card.appendChild(name);
+    card.appendChild(
+        badge
+    );
 
-    card.appendChild(path);
 
-    card.appendChild(type);
+    card.appendChild(
+        preview
+    );
+
+
+    card.appendChild(
+        name
+    );
+
+
+    card.appendChild(
+        path
+    );
+
+
+    card.appendChild(
+        type
+    );
+
 
 
     card.addEventListener(
         "click",
         () => {
 
-            openModelModal(model);
+            openModelModal(
+                model
+            );
 
         }
-    );
-
-
-    drawModelPreview(
-        model,
-        canvas
     );
 
 
     return card;
 
 }
+
 
 
 /* =========================================================
@@ -1044,16 +1517,20 @@ function setModelSelected(
 
     renderModels();
 
+
     updateModalSelectionButton();
 
 }
 
 
+
 /* =========================================================
-   MODAL
+   MODEL MODAL
 ========================================================= */
 
-function openModelModal(model) {
+function openModelModal(
+    model
+) {
 
     state.currentModel =
         model;
@@ -1087,23 +1564,32 @@ function openModelModal(model) {
     );
 
 
-    requestAnimationFrame(() => {
+    requestAnimationFrame(
+        () => {
 
-        createModalViewer(model);
+            createModalViewer(
+                model
+            );
 
-    });
+        }
+    );
 
 }
 
 
+
 /* =========================================================
-   MODAL SELECTION
+   MODAL SELECTION BUTTON
 ========================================================= */
 
 function updateModalSelectionButton() {
 
-    if (!state.currentModel) {
+    if (
+        !state.currentModel
+    ) {
+
         return;
+
     }
 
 
@@ -1121,12 +1607,17 @@ function updateModalSelectionButton() {
 }
 
 
+
 elements.selectModelButton.addEventListener(
     "click",
     () => {
 
-        if (!state.currentModel) {
+        if (
+            !state.currentModel
+        ) {
+
             return;
+
         }
 
 
@@ -1149,6 +1640,7 @@ elements.selectModelButton.addEventListener(
 );
 
 
+
 /* =========================================================
    CLOSE MODAL
 ========================================================= */
@@ -1157,6 +1649,7 @@ elements.closeModal.addEventListener(
     "click",
     closeModal
 );
+
 
 elements.closeModalButton.addEventListener(
     "click",
@@ -1185,7 +1678,9 @@ document.addEventListener(
     "keydown",
     event => {
 
-        if (event.key === "Escape") {
+        if (
+            event.key === "Escape"
+        ) {
 
             closeModal();
 
@@ -1195,16 +1690,20 @@ document.addEventListener(
 );
 
 
+
 function closeModal() {
 
     stopModalViewer();
+
 
     elements.modelModal.classList.remove(
         "open"
     );
 
+
     state.currentModel =
         null;
+
 
     elements.modalViewer.innerHTML =
         "";
@@ -1212,13 +1711,17 @@ function closeModal() {
 }
 
 
+
 /* =========================================================
-   THREE.JS MODAL VIEWER
+   MODAL VIEWER
 ========================================================= */
 
-function createModalViewer(model) {
+function createModalViewer(
+    model
+) {
 
     stopModalViewer();
+
 
     elements.modalViewer.innerHTML =
         "";
@@ -1226,6 +1729,7 @@ function createModalViewer(model) {
 
     const width =
         elements.modalViewer.clientWidth;
+
 
     const height =
         elements.modalViewer.clientHeight;
@@ -1241,10 +1745,9 @@ function createModalViewer(model) {
     }
 
 
-    /* Scene */
-
     const scene =
         new THREE.Scene();
+
 
     scene.background =
         new THREE.Color(
@@ -1252,7 +1755,6 @@ function createModalViewer(model) {
         );
 
 
-    /* Camera */
 
     const camera =
         new THREE.PerspectiveCamera(
@@ -1264,13 +1766,12 @@ function createModalViewer(model) {
 
 
     camera.position.set(
-        30,
-        24,
-        30
+        28,
+        20,
+        28
     );
 
 
-    /* Renderer */
 
     const renderer =
         new THREE.WebGLRenderer({
@@ -1297,12 +1798,19 @@ function createModalViewer(model) {
         THREE.sRGBEncoding;
 
 
+    renderer.physicallyCorrectLights =
+        false;
+
+
     elements.modalViewer.appendChild(
         renderer.domElement
     );
 
 
-    /* OrbitControls */
+
+    /*
+     * OrbitControls r147
+     */
 
     const controls =
         new THREE.OrbitControls(
@@ -1314,70 +1822,100 @@ function createModalViewer(model) {
     controls.enableDamping =
         true;
 
+
     controls.dampingFactor =
         0.08;
 
+
     controls.minDistance =
-        5;
+        3;
+
 
     controls.maxDistance =
-        150;
+        200;
+
 
     controls.enablePan =
         true;
 
 
-    /* Lighting */
+
+    /*
+     * Licht
+     */
 
     const ambient =
         new THREE.AmbientLight(
             0xffffff,
-            1.8
+            1.5
         );
 
-    scene.add(ambient);
+
+    scene.add(
+        ambient
+    );
 
 
     const light =
         new THREE.DirectionalLight(
             0xffffff,
-            2.2
+            2.5
         );
 
+
     light.position.set(
-        20,
         30,
-        20
+        40,
+        25
     );
 
-    scene.add(light);
+
+    scene.add(
+        light
+    );
 
 
     const light2 =
         new THREE.DirectionalLight(
-            0x8ebaff,
-            0.7
+            0x8db8ff,
+            0.8
         );
 
+
     light2.position.set(
-        -20,
-        10,
-        -20
+        -30,
+        15,
+        -30
     );
 
-    scene.add(light2);
+
+    scene.add(
+        light2
+    );
 
 
-    /* Model */
+
+    /*
+     * Modell
+     */
 
     const modelGroup =
         new THREE.Group();
 
-    scene.add(modelGroup);
+
+    scene.add(
+        modelGroup
+    );
+
+
+    const resolved =
+        resolveModel(
+            model
+        );
 
 
     buildMinecraftModel(
-        model.json,
+        resolved,
         modelGroup
     );
 
@@ -1389,7 +1927,10 @@ function createModalViewer(model) {
     );
 
 
-    /* Animation */
+
+    /*
+     * Animation
+     */
 
     state.modalRenderer =
         renderer;
@@ -1427,7 +1968,10 @@ function createModalViewer(model) {
     animate();
 
 
-    /* Resize */
+
+    /*
+     * Resize
+     */
 
     state.modalResizeHandler =
         () => {
@@ -1445,17 +1989,24 @@ function createModalViewer(model) {
             const w =
                 elements.modalViewer.clientWidth;
 
+
             const h =
                 elements.modalViewer.clientHeight;
 
 
-            if (!w || !h) {
+            if (
+                !w ||
+                !h
+            ) {
+
                 return;
+
             }
 
 
             camera.aspect =
                 w / h;
+
 
             camera.updateProjectionMatrix();
 
@@ -1476,8 +2027,9 @@ function createModalViewer(model) {
 }
 
 
+
 /* =========================================================
-   STOP VIEWER
+   STOP MODAL VIEWER
 ========================================================= */
 
 function stopModalViewer() {
@@ -1489,6 +2041,7 @@ function stopModalViewer() {
         cancelAnimationFrame(
             state.modalAnimation
         );
+
 
         state.modalAnimation =
             null;
@@ -1505,6 +2058,7 @@ function stopModalViewer() {
             state.modalResizeHandler
         );
 
+
         state.modalResizeHandler =
             null;
 
@@ -1517,6 +2071,7 @@ function stopModalViewer() {
 
         state.modalRenderer.dispose();
 
+
         if (
             state.modalRenderer.domElement
         ) {
@@ -1524,6 +2079,7 @@ function stopModalViewer() {
             state.modalRenderer.domElement.remove();
 
         }
+
 
         state.modalRenderer =
             null;
@@ -1533,8 +2089,509 @@ function stopModalViewer() {
 }
 
 
+
 /* =========================================================
-   MINECRAFT MODEL
+   MODEL RESOLUTION
+========================================================= */
+
+function resolveModel(
+    model
+) {
+
+    /*
+     * Kopie erstellen, damit wir
+     * das originale JSON nicht verändern.
+     */
+
+    const result =
+        deepClone(
+            model.json
+        );
+
+
+    const visited =
+        new Set();
+
+
+    resolveParentRecursive(
+        result,
+        model,
+        visited
+    );
+
+
+    return result;
+
+}
+
+
+
+/* =========================================================
+   PARENT RESOLUTION
+========================================================= */
+
+function resolveParentRecursive(
+    json,
+    originalModel,
+    visited
+) {
+
+    if (
+        !json ||
+        !json.parent
+    ) {
+
+        return;
+
+    }
+
+
+    let parentPath =
+        json.parent;
+
+
+    /*
+     * minecraft:foo/bar
+     */
+
+    if (
+        parentPath.includes(":")
+    ) {
+
+        const namespace =
+            parentPath.split(":")[0];
+
+
+        const value =
+            parentPath.split(":")[1];
+
+
+        /*
+         * Wir unterstützen momentan
+         * primär minecraft.
+         */
+
+        if (
+            namespace !==
+            "minecraft"
+        ) {
+
+            return;
+
+        }
+
+
+        parentPath =
+            value;
+
+    }
+
+
+    /*
+     * item/generated und
+     * item/handheld liegen unter
+     * models/item.
+     */
+
+    let parentFilePath;
+
+
+    if (
+        parentPath.startsWith(
+            "block/"
+        )
+    ) {
+
+        parentFilePath =
+            `assets/minecraft/models/${parentPath}.json`;
+
+    } else {
+
+        parentFilePath =
+            `assets/minecraft/models/${parentPath}.json`;
+
+    }
+
+
+    if (
+        visited.has(
+            parentFilePath
+        )
+    ) {
+
+        console.warn(
+            "Parent-Zyklus:",
+            parentFilePath
+        );
+
+        return;
+
+    }
+
+
+    visited.add(
+        parentFilePath
+    );
+
+
+    const parentFile =
+        getFileByPath(
+            parentFilePath
+        );
+
+
+    if (!parentFile) {
+
+        /*
+         * Spezialfall item/generated
+         */
+
+        if (
+            parentPath ===
+            "item/generated"
+        ) {
+
+            createGeneratedModel(
+                json
+            );
+
+        }
+
+
+        /*
+         * Spezialfall item/handheld
+         */
+
+        else if (
+            parentPath ===
+            "item/handheld"
+        ) {
+
+            createGeneratedModel(
+                json
+            );
+
+        }
+
+
+        return;
+
+    }
+
+
+    /*
+     * Parent laden
+     */
+
+    parentFile
+        .text()
+        .then(
+            () => {}
+        );
+
+
+    /*
+     * Da resolve synchron arbeiten soll,
+     * wird der Parent über einen
+     * vorbereiteten Cache geladen.
+     *
+     * Die tatsächliche JSON-Datei wird
+     * hier synchron aus dem bereits
+     * gelesenen Model-Cache geholt.
+     */
+
+    const parentModel =
+        state.models.find(
+            item =>
+                item.path.toLowerCase() ===
+                parentFilePath.toLowerCase()
+        );
+
+
+    if (!parentModel) {
+
+        return;
+
+    }
+
+
+    const parentJson =
+        deepClone(
+            parentModel.json
+        );
+
+
+    resolveParentRecursive(
+        parentJson,
+        parentModel,
+        visited
+    );
+
+
+    /*
+     * Parent zuerst übernehmen.
+     */
+
+    mergeMinecraftModels(
+        parentJson,
+        json
+    );
+
+}
+
+
+
+/* =========================================================
+   MERGE MINECRAFT MODELS
+========================================================= */
+
+function mergeMinecraftModels(
+    parent,
+    child
+) {
+
+    /*
+     * Parent wird nur ergänzt,
+     * wenn das Kind den Wert
+     * nicht selbst besitzt.
+     */
+
+
+    if (
+        !child.elements &&
+        parent.elements
+    ) {
+
+        child.elements =
+            deepClone(
+                parent.elements
+            );
+
+    }
+
+
+    if (
+        !child.display &&
+        parent.display
+    ) {
+
+        child.display =
+            deepClone(
+                parent.display
+            );
+
+    }
+
+
+    if (
+        !child.ambientocclusion &&
+        parent.ambientocclusion !== undefined
+    ) {
+
+        child.ambientocclusion =
+            parent.ambientocclusion;
+
+    }
+
+
+    /*
+     * Texturen zusammenführen.
+     */
+
+    const parentTextures =
+        parent.textures || {};
+
+
+    const childTextures =
+        child.textures || {};
+
+
+    child.textures =
+        Object.assign(
+            {},
+            parentTextures,
+            childTextures
+        );
+
+
+    /*
+     * Parent entfernen.
+     */
+
+    delete child.parent;
+
+}
+
+
+
+/* =========================================================
+   GENERATED MODEL
+========================================================= */
+
+function createGeneratedModel(
+    json
+) {
+
+    /*
+     * Wenn ein item/generated-Modell
+     * keine elements besitzt, erzeugen
+     * wir eine einfache dünne Platte.
+     *
+     * Die eigentliche Item-Texture wird
+     * über layer0 geladen.
+     */
+
+    if (
+        json.elements &&
+        json.elements.length
+    ) {
+
+        return;
+
+    }
+
+
+    const textures =
+        json.textures || {};
+
+
+    const texture =
+        textures.layer0;
+
+
+    if (!texture) {
+
+        return;
+
+    }
+
+
+    json.elements = [
+
+        {
+
+            from: [
+                0,
+                0,
+                7.5
+            ],
+
+            to: [
+                16,
+                16,
+                8.5
+            ],
+
+            faces: {
+
+                north: {
+
+                    texture:
+                        "#layer0",
+
+                    uv: [
+                        0,
+                        0,
+                        16,
+                        16
+                    ]
+
+                },
+
+                south: {
+
+                    texture:
+                        "#layer0",
+
+                    uv: [
+                        0,
+                        0,
+                        16,
+                        16
+                    ]
+
+                }
+
+            }
+
+        }
+
+    ];
+
+}
+
+
+
+/* =========================================================
+   FILE BY PATH
+========================================================= */
+
+function getFileByPath(
+    path
+) {
+
+    const normalized =
+        path
+            .replace(
+                /\\/g,
+                "/"
+            )
+            .toLowerCase();
+
+
+    /*
+     * Direkt versuchen.
+     */
+
+    if (
+        filePathCache.has(
+            normalized
+        )
+    ) {
+
+        return filePathCache.get(
+            normalized
+        );
+
+    }
+
+
+    /*
+     * Noch einmal über alle
+     * Dateien gehen.
+     */
+
+    for (
+        const file of state.files
+    ) {
+
+        const filePath =
+            getRelativePath(
+                file
+            )
+            .toLowerCase();
+
+
+        if (
+            filePath ===
+            normalized
+        ) {
+
+            return file;
+
+        }
+
+    }
+
+
+    return null;
+
+}
+
+
+
+/* =========================================================
+   BUILD MINECRAFT MODEL
 ========================================================= */
 
 function buildMinecraftModel(
@@ -1542,31 +2599,61 @@ function buildMinecraftModel(
     group
 ) {
 
+    if (
+        !json
+    ) {
+
+        return;
+
+    }
+
+
     /*
-     * Für die nächste Version werden wir
-     * hier noch Parent-Modelle vollständig
-     * auflösen.
+     * Parent-Sonderfall
      */
 
     if (
-        !json ||
+        json.parent &&
+        !json.elements
+    ) {
+
+        createGeneratedModel(
+            json
+        );
+
+    }
+
+
+    if (
+        !json.elements ||
         !Array.isArray(
             json.elements
         )
     ) {
 
+        /*
+         * Fallback-Würfel,
+         * damit niemals ein komplett
+         * leeres Fenster erscheint.
+         */
+
         const geometry =
             new THREE.BoxGeometry(
-                10,
-                10,
-                10
+                8,
+                8,
+                8
             );
 
 
         const material =
             new THREE.MeshStandardMaterial({
-                color: 0x777777,
-                side: THREE.FrontSide
+
+                color:
+                    0x777777,
+
+                side:
+                    THREE.FrontSide
+
             });
 
 
@@ -1577,7 +2664,10 @@ function buildMinecraftModel(
             );
 
 
-        group.add(cube);
+        group.add(
+            cube
+        );
+
 
         return;
 
@@ -1588,7 +2678,7 @@ function buildMinecraftModel(
         const element of json.elements
     ) {
 
-        buildElement(
+        buildMinecraftElement(
             element,
             json,
             group
@@ -1599,11 +2689,12 @@ function buildMinecraftModel(
 }
 
 
+
 /* =========================================================
-   MODEL ELEMENT
+   BUILD ELEMENT
 ========================================================= */
 
-function buildElement(
+function buildMinecraftElement(
     element,
     model,
     group
@@ -1622,42 +2713,358 @@ function buildElement(
     const from =
         element.from;
 
+
     const to =
         element.to;
 
 
-    const sizeX =
-        Math.max(
-            0.01,
-            to[0] - from[0]
-        );
-
-    const sizeY =
-        Math.max(
-            0.01,
-            to[1] - from[1]
-        );
-
-    const sizeZ =
-        Math.max(
-            0.01,
-            to[2] - from[2]
-        );
+    const faces =
+        element.faces || {};
 
 
     const geometry =
-        new THREE.BoxGeometry(
-            sizeX,
-            sizeY,
-            sizeZ
+        new THREE.BufferGeometry();
+
+
+    const positions = [];
+    const uvs = [];
+    const indices = [];
+
+
+    /*
+     * Jede Minecraft-Face bekommt
+     * vier eigene Vertices.
+     */
+
+    const faceDefinitions = {
+
+        down: {
+
+            normal: [
+                0,
+                -1,
+                0
+            ],
+
+            corners: [
+
+                [from[0], from[1], to[2]],
+
+                [to[0], from[1], to[2]],
+
+                [to[0], from[1], from[2]],
+
+                [from[0], from[1], from[2]]
+
+            ]
+
+        },
+
+
+        up: {
+
+            normal: [
+                0,
+                1,
+                0
+            ],
+
+            corners: [
+
+                [from[0], to[1], from[2]],
+
+                [to[0], to[1], from[2]],
+
+                [to[0], to[1], to[2]],
+
+                [from[0], to[1], to[2]]
+
+            ]
+
+        },
+
+
+        north: {
+
+            normal: [
+                0,
+                0,
+                -1
+            ],
+
+            corners: [
+
+                [to[0], from[1], from[2]],
+
+                [from[0], from[1], from[2]],
+
+                [from[0], to[1], from[2]],
+
+                [to[0], to[1], from[2]]
+
+            ]
+
+        },
+
+
+        south: {
+
+            normal: [
+                0,
+                0,
+                1
+            ],
+
+            corners: [
+
+                [from[0], from[1], to[2]],
+
+                [to[0], from[1], to[2]],
+
+                [to[0], to[1], to[2]],
+
+                [from[0], to[1], to[2]]
+
+            ]
+
+        },
+
+
+        west: {
+
+            normal: [
+                -1,
+                0,
+                0
+            ],
+
+            corners: [
+
+                [from[0], from[1], from[2]],
+
+                [from[0], from[1], to[2]],
+
+                [from[0], to[1], to[2]],
+
+                [from[0], to[1], from[2]]
+
+            ]
+
+        },
+
+
+        east: {
+
+            normal: [
+                1,
+                0,
+                0
+            ],
+
+            corners: [
+
+                [to[0], from[1], to[2]],
+
+                [to[0], from[1], from[2]],
+
+                [to[0], to[1], from[2]],
+
+                [to[0], to[1], to[2]]
+
+            ]
+
+        }
+
+    };
+
+
+    const faceNames = [
+
+        "down",
+        "up",
+        "north",
+        "south",
+        "west",
+        "east"
+
+    ];
+
+
+    let vertexOffset =
+        0;
+
+
+    const materials = [];
+
+
+    for (
+        const faceName of faceNames
+    ) {
+
+        const face =
+            faces[faceName];
+
+
+        if (!face) {
+
+            continue;
+
+        }
+
+
+        const definition =
+            faceDefinitions[
+                faceName
+            ];
+
+
+        /*
+         * Texture bestimmen.
+         */
+
+        const textureReference =
+            resolveTextureReference(
+                face.texture,
+                model.textures || {}
+            );
+
+
+        const texture =
+            findTexture(
+                textureReference
+            );
+
+
+        /*
+         * Material
+         */
+
+        const material =
+            createMinecraftMaterial(
+                texture
+            );
+
+
+        const materialIndex =
+            materials.length;
+
+
+        materials.push(
+            material
         );
 
 
-    const materials =
-        createFaceMaterials(
-            element,
-            model
+        /*
+         * Positionen
+         */
+
+        for (
+            const corner
+            of definition.corners
+        ) {
+
+            positions.push(
+
+                corner[0] - 8,
+
+                corner[1] - 8,
+
+                -(corner[2] - 8)
+
+            );
+
+        }
+
+
+        /*
+         * UVs
+         */
+
+        const uv =
+            face.uv ||
+            getDefaultFaceUV(
+                faceName,
+                from,
+                to
+            );
+
+
+        const minecraftUV =
+            convertMinecraftUV(
+                uv,
+                face.rotation || 0
+            );
+
+
+        for (
+            const uvPoint
+            of minecraftUV
+        ) {
+
+            uvs.push(
+                uvPoint[0],
+                uvPoint[1]
+            );
+
+        }
+
+
+        /*
+         * Dreiecke
+         */
+
+        indices.push(
+
+            vertexOffset,
+            vertexOffset + 1,
+            vertexOffset + 2,
+
+            vertexOffset,
+            vertexOffset + 2,
+            vertexOffset + 3
+
         );
+
+
+        vertexOffset += 4;
+
+    }
+
+
+    if (
+        !positions.length
+    ) {
+
+        return;
+
+    }
+
+
+    geometry.setAttribute(
+        "position",
+        new THREE.Float32BufferAttribute(
+            positions,
+            3
+        )
+    );
+
+
+    geometry.setAttribute(
+        "uv",
+        new THREE.Float32BufferAttribute(
+            uvs,
+            2
+        )
+    );
+
+
+    geometry.setIndex(
+        indices
+    );
+
+
+    geometry.computeVertexNormals();
+
 
 
     const mesh =
@@ -1667,17 +3074,14 @@ function buildElement(
         );
 
 
-    mesh.position.set(
-
-        (from[0] + to[0]) / 2 - 8,
-
-        (from[1] + to[1]) / 2 - 8,
-
-        -(
-            (from[2] + to[2]) / 2 - 8
-        )
-
-    );
+    /*
+     * Minecraft-Koordinaten:
+     *
+     * 0..16
+     *
+     * Wir verwenden 16 als
+     * Minecraft-Einheit.
+     */
 
 
     if (
@@ -1692,121 +3096,239 @@ function buildElement(
     }
 
 
-    group.add(mesh);
+    group.add(
+        mesh
+    );
 
 }
 
 
+
 /* =========================================================
-   MATERIALS
+   MINECRAFT MATERIAL
 ========================================================= */
 
-function createFaceMaterials(
-    element,
-    model
+function createMinecraftMaterial(
+    texture
 ) {
 
-    const faces = [
-        "right",
-        "left",
-        "top",
-        "bottom",
-        "front",
-        "back"
-    ];
-
-
-    const materials = [];
-
-
-    for (
-        const faceName of faces
+    if (
+        texture
     ) {
 
-        const face =
-            element.faces &&
-            element.faces[faceName];
+        texture.magFilter =
+            THREE.NearestFilter;
 
 
-        if (!face) {
-
-            materials.push(
-                new THREE.MeshStandardMaterial({
-                    color: 0x777777,
-                    side: THREE.FrontSide
-                })
-            );
-
-            continue;
-
-        }
+        texture.minFilter =
+            THREE.NearestFilter;
 
 
-        const textureName =
-            resolveTextureReference(
-                face.texture,
-                model.textures || {}
-            );
+        texture.generateMipmaps =
+            false;
 
 
-        const texture =
-            findTexture(
-                textureName
-            );
+        texture.encoding =
+            THREE.sRGBEncoding;
 
 
-        if (texture) {
+        return new THREE.MeshStandardMaterial({
 
-            texture.magFilter =
-                THREE.NearestFilter;
+            map:
+                texture,
 
-            texture.minFilter =
-                THREE.NearestFilter;
+            transparent:
+                true,
 
-            texture.generateMipmaps =
-                false;
+            alphaTest:
+                0.05,
 
+            side:
+                THREE.DoubleSide,
 
-            const material =
-                new THREE.MeshStandardMaterial({
+            roughness:
+                0.9,
 
-                    map: texture,
+            metalness:
+                0
 
-                    transparent: true,
-
-                    alphaTest: 0.5,
-
-                    side:
-                        THREE.FrontSide
-
-                });
-
-
-            materials.push(
-                material
-            );
-
-        } else {
-
-            materials.push(
-                new THREE.MeshStandardMaterial({
-
-                    color: 0x777777,
-
-                    side:
-                        THREE.FrontSide
-
-                })
-            );
-
-        }
+        });
 
     }
 
 
-    return materials;
+    return new THREE.MeshStandardMaterial({
+
+        color:
+            0x777777,
+
+        side:
+            THREE.DoubleSide,
+
+        roughness:
+            0.9
+
+    });
 
 }
+
+
+
+/* =========================================================
+   DEFAULT FACE UV
+========================================================= */
+
+function getDefaultFaceUV(
+    faceName,
+    from,
+    to
+) {
+
+    switch (
+        faceName
+    ) {
+
+        case "up":
+        case "down":
+
+            return [
+                from[0],
+                from[2],
+                to[0],
+                to[2]
+            ];
+
+
+        case "north":
+        case "south":
+
+            return [
+                from[0],
+                from[1],
+                to[0],
+                to[1]
+            ];
+
+
+        case "west":
+        case "east":
+
+            return [
+                from[2],
+                from[1],
+                to[2],
+                to[1]
+            ];
+
+    }
+
+
+    return [
+        0,
+        0,
+        16,
+        16
+    ];
+
+}
+
+
+
+/* =========================================================
+   CONVERT MINECRAFT UV
+========================================================= */
+
+function convertMinecraftUV(
+    uv,
+    rotation
+) {
+
+    let x1 =
+        uv[0];
+
+    let y1 =
+        uv[1];
+
+    let x2 =
+        uv[2];
+
+    let y2 =
+        uv[3];
+
+
+    /*
+     * Minecraft hat normalerweise
+     * Ursprung oben links.
+     *
+     * Three.js:
+     * Ursprung unten links.
+     */
+
+
+    let result = [
+
+        [
+            x1 / 16,
+            1 - y1 / 16
+        ],
+
+        [
+            x2 / 16,
+            1 - y1 / 16
+        ],
+
+        [
+            x2 / 16,
+            1 - y2 / 16
+        ],
+
+        [
+            x1 / 16,
+            1 - y2 / 16
+        ]
+
+    ];
+
+
+    /*
+     * Minecraft Face Rotation:
+     * 0 / 90 / 180 / 270
+     */
+
+    const steps =
+        (
+            Math.round(
+                rotation / 90
+            ) % 4 + 4
+        ) % 4;
+
+
+    for (
+        let i = 0;
+        i < steps;
+        i++
+    ) {
+
+        result =
+            [
+
+                result[3],
+
+                result[0],
+
+                result[1],
+
+                result[2]
+
+            ];
+
+    }
+
+
+    return result;
+
+}
+
 
 
 /* =========================================================
@@ -1819,7 +3341,9 @@ function resolveTextureReference(
 ) {
 
     if (!reference) {
+
         return null;
+
     }
 
 
@@ -1836,7 +3360,9 @@ function resolveTextureReference(
     ) {
 
         if (
-            visited.has(current)
+            visited.has(
+                current
+            )
         ) {
 
             return null;
@@ -1844,7 +3370,9 @@ function resolveTextureReference(
         }
 
 
-        visited.add(current);
+        visited.add(
+            current
+        );
 
 
         const key =
@@ -1873,6 +3401,7 @@ function resolveTextureReference(
 }
 
 
+
 /* =========================================================
    FIND TEXTURE
 ========================================================= */
@@ -1882,7 +3411,9 @@ function findTexture(
 ) {
 
     if (!textureName) {
+
         return null;
+
     }
 
 
@@ -1890,14 +3421,29 @@ function findTexture(
         textureName;
 
 
+    /*
+     * minecraft:item/foo
+     */
+
     if (
         path.includes(":")
     ) {
 
+        const parts =
+            path.split(":");
+
+
         path =
-            path.split(":")[1];
+            parts[1];
 
     }
+
+
+    path =
+        path.replace(
+            /^\/+/,
+            ""
+        );
 
 
     path =
@@ -1911,27 +3457,54 @@ function findTexture(
         `assets/minecraft/textures/${path}.png`;
 
 
+    const file =
+        filePathCache.get(
+            wantedPath.toLowerCase()
+        );
+
+
+    if (file) {
+
+        return loadTexture(
+            file
+        );
+
+    }
+
+
+    /*
+     * Fallback.
+     */
+
     for (
-        const file of state.files
+        const currentFile
+        of state.files
     ) {
 
-        const filePath =
-            getRelativePath(file)
-                .replace(
-                    /\\/g,
-                    "/"
-                );
+        const currentPath =
+            getRelativePath(
+                currentFile
+            );
 
 
         if (
-            filePath === wantedPath
+            currentPath.toLowerCase() ===
+            wantedPath.toLowerCase()
         ) {
 
-            return loadTexture(file);
+            return loadTexture(
+                currentFile
+            );
 
         }
 
     }
+
+
+    console.warn(
+        "Textur nicht gefunden:",
+        wantedPath
+    );
 
 
     return null;
@@ -1939,42 +3512,58 @@ function findTexture(
 }
 
 
+
 /* =========================================================
    LOAD TEXTURE
 ========================================================= */
 
-function loadTexture(file) {
+function loadTexture(
+    file
+) {
 
     const key =
-        getRelativePath(file);
+        getRelativePath(
+            file
+        );
 
 
     if (
-        textureCache.has(key)
+        textureCache.has(
+            key
+        )
     ) {
 
-        return textureCache.get(key);
+        return textureCache.get(
+            key
+        );
 
     }
 
 
     const url =
-        URL.createObjectURL(file);
+        URL.createObjectURL(
+            file
+        );
 
 
     const texture =
         new THREE.TextureLoader()
-            .load(url);
+            .load(
+                url
+            );
 
 
     texture.magFilter =
         THREE.NearestFilter;
 
+
     texture.minFilter =
         THREE.NearestFilter;
 
+
     texture.generateMipmaps =
         false;
+
 
     texture.encoding =
         THREE.sRGBEncoding;
@@ -1991,8 +3580,9 @@ function loadTexture(file) {
 }
 
 
+
 /* =========================================================
-   ROTATION
+   ELEMENT ROTATION
 ========================================================= */
 
 function applyElementRotation(
@@ -2001,7 +3591,8 @@ function applyElementRotation(
 ) {
 
     const origin =
-        rotation.origin || [
+        rotation.origin ||
+        [
             8,
             8,
             8
@@ -2014,18 +3605,28 @@ function applyElementRotation(
         );
 
 
-    mesh.position.sub(
+    /*
+     * Minecraft:
+     * X/Y/Z
+     *
+     * Unsere Z-Achse wurde
+     * gespiegelt.
+     */
+
+    const pivot =
         new THREE.Vector3(
 
             origin[0] - 8,
 
             origin[1] - 8,
 
-            -(
-                origin[2] - 8
-            )
+            -(origin[2] - 8)
 
-        )
+        );
+
+
+    mesh.position.sub(
+        pivot
     );
 
 
@@ -2034,23 +3635,37 @@ function applyElementRotation(
     ) {
 
         case "x":
+
             mesh.rotation.x =
                 angle;
+
             break;
+
 
         case "y":
+
             mesh.rotation.y =
                 -angle;
+
             break;
 
+
         case "z":
+
             mesh.rotation.z =
                 -angle;
+
             break;
 
     }
 
+
+    mesh.position.add(
+        pivot
+    );
+
 }
+
 
 
 /* =========================================================
@@ -2065,7 +3680,18 @@ function centerObject(
 
     const box =
         new THREE.Box3()
-            .setFromObject(object);
+            .setFromObject(
+                object
+            );
+
+
+    if (
+        box.isEmpty()
+    ) {
+
+        return;
+
+    }
 
 
     const center =
@@ -2080,7 +3706,9 @@ function centerObject(
         );
 
 
-    object.position.sub(center);
+    object.position.sub(
+        center
+    );
 
 
     const maxSize =
@@ -2093,15 +3721,19 @@ function centerObject(
 
     const distance =
         Math.max(
-            20,
-            maxSize * 2.2
+            15,
+            maxSize * 2.4
         );
 
 
     camera.position.set(
+
         distance,
-        distance * 0.75,
+
+        distance * 0.7,
+
         distance
+
     );
 
 
@@ -2117,294 +3749,461 @@ function centerObject(
 }
 
 
+
 /* =========================================================
-   2D PREVIEW
+   PREVIEW RENDERER
 ========================================================= */
 
-function drawModelPreview(
-    model,
-    canvas
-) {
+/*
+ * Wir erzeugen NICHT für jede Karte
+ * einen eigenen WebGLRenderer.
+ *
+ * Das würde bei vielen Modellen
+ * schnell zu:
+ *
+ * "Too many active WebGL contexts"
+ *
+ * führen.
+ *
+ * Stattdessen gibt es nur EINEN
+ * Preview-Renderer.
+ */
 
-    const ctx =
-        canvas.getContext("2d");
-
-
-    const width =
-        canvas.width;
-
-    const height =
-        canvas.height;
-
-
-    ctx.clearRect(
-        0,
-        0,
-        width,
-        height
-    );
-
-
-    ctx.fillStyle =
-        "#20242b";
-
-
-    ctx.fillRect(
-        0,
-        0,
-        width,
-        height
-    );
-
+function createPreviewRenderer() {
 
     if (
-        !model.json ||
-        !Array.isArray(
-            model.json.elements
-        )
+        state.previewRenderer
     ) {
-
-        ctx.fillStyle =
-            "#777d86";
-
-        ctx.font =
-            "14px sans-serif";
-
-        ctx.textAlign =
-            "center";
-
-        ctx.fillText(
-            "Parent Model",
-            width / 2,
-            height / 2
-        );
 
         return;
 
     }
 
 
-    const elements =
-        model.json.elements;
+    const renderer =
+        new THREE.WebGLRenderer({
+            antialias: true,
+            alpha: true,
+            preserveDrawingBuffer: true
+        });
 
 
-    const scale =
-        Math.min(
-            width,
-            height
-        ) * 0.035;
+    renderer.setSize(
+        240,
+        180,
+        false
+    );
 
 
-    const centerX =
-        width / 2;
-
-    const centerY =
-        height / 2;
+    renderer.setPixelRatio(
+        1
+    );
 
 
-    function project(
-        x,
-        y,
-        z
-    ) {
-
-        return {
-
-            x:
-                centerX +
-                (x - z) *
-                scale,
-
-            y:
-                centerY -
-                y *
-                scale +
-                (x + z) *
-                scale *
-                0.5
-
-        };
-
-    }
+    renderer.outputEncoding =
+        THREE.sRGBEncoding;
 
 
-    for (
-        const element of elements
-    ) {
-
-        const from =
-            element.from;
-
-        const to =
-            element.to;
+    state.previewRenderer =
+        renderer;
 
 
-        const p1 =
-            project(
-                from[0],
-                from[1],
-                from[2]
-            );
-
-        const p2 =
-            project(
-                to[0],
-                from[1],
-                from[2]
-            );
-
-        const p3 =
-            project(
-                to[0],
-                to[1],
-                from[2]
-            );
-
-        const p4 =
-            project(
-                from[0],
-                to[1],
-                from[2]
-            );
-
-        const p6 =
-            project(
-                to[0],
-                from[1],
-                to[2]
-            );
-
-        const p7 =
-            project(
-                to[0],
-                to[1],
-                to[2]
-            );
-
-        const p8 =
-            project(
-                from[0],
-                to[1],
-                to[2]
-            );
+    state.previewScene =
+        new THREE.Scene();
 
 
-        drawPolygon(
-            ctx,
-            [
-                p4,
-                p3,
-                p7,
-                p8
-            ],
-            "#aeb5bd"
+    state.previewCamera =
+        new THREE.PerspectiveCamera(
+            35,
+            240 / 180,
+            0.01,
+            1000
         );
 
 
-        drawPolygon(
-            ctx,
-            [
-                p2,
-                p6,
-                p7,
-                p3
-            ],
-            "#858b94"
-        );
+    /*
+     * Renderer muss nicht sichtbar
+     * auf der Seite liegen.
+     */
+
+    renderer.domElement.style.position =
+        "fixed";
 
 
-        drawPolygon(
-            ctx,
-            [
-                p1,
-                p2,
-                p3,
-                p4
-            ],
-            "#666c75"
-        );
+    renderer.domElement.style.left =
+        "-10000px";
 
-    }
+
+    renderer.domElement.style.top =
+        "0";
+
+
+    renderer.domElement.style.width =
+        "240px";
+
+
+    renderer.domElement.style.height =
+        "180px";
+
+
+    document.body.appendChild(
+        renderer.domElement
+    );
 
 }
 
 
+
 /* =========================================================
-   POLYGON
+   GENERATE PREVIEW IMAGES
 ========================================================= */
 
-function drawPolygon(
-    ctx,
-    points,
-    color
-) {
+async function generatePreviewImages() {
 
-    ctx.beginPath();
+    if (
+        !state.filteredModels.length
+    ) {
+
+        return;
+
+    }
 
 
-    ctx.moveTo(
-        points[0].x,
-        points[0].y
+    createPreviewRenderer();
+
+
+    /*
+     * Kurz warten, damit die
+     * TextureLoader-Dateien Zeit hat.
+     */
+
+    await wait(
+        100
     );
 
 
     for (
-        let i = 1;
-        i < points.length;
-        i++
+        const model
+        of state.filteredModels
     ) {
 
-        ctx.lineTo(
-            points[i].x,
-            points[i].y
+        const image =
+            document.querySelector(
+                `img[data-model-path="${cssEscape(model.path)}"]`
+            );
+
+
+        if (!image) {
+
+            continue;
+
+        }
+
+
+        try {
+
+            const dataUrl =
+                renderPreview(
+                    model
+                );
+
+
+            image.src =
+                dataUrl;
+
+        } catch (
+            error
+        ) {
+
+            console.warn(
+                "Preview konnte nicht gerendert werden:",
+                model.path,
+                error
+            );
+
+        }
+
+    }
+
+}
+
+
+
+/* =========================================================
+   RENDER PREVIEW
+========================================================= */
+
+function renderPreview(
+    model
+) {
+
+    const renderer =
+        state.previewRenderer;
+
+
+    const scene =
+        state.previewScene;
+
+
+    const camera =
+        state.previewCamera;
+
+
+    /*
+     * Szene leeren.
+     */
+
+    while (
+        scene.children.length
+    ) {
+
+        scene.remove(
+            scene.children[
+                scene.children.length - 1
+            ]
         );
 
     }
 
 
-    ctx.closePath();
+    scene.background =
+        new THREE.Color(
+            0x20242b
+        );
 
 
-    ctx.fillStyle =
-        color;
+    /*
+     * Licht
+     */
 
-    ctx.fill();
+    const ambient =
+        new THREE.AmbientLight(
+            0xffffff,
+            1.8
+        );
 
 
-    ctx.strokeStyle =
-        "#30343a";
+    scene.add(
+        ambient
+    );
 
-    ctx.lineWidth =
-        1;
 
-    ctx.stroke();
+    const light =
+        new THREE.DirectionalLight(
+            0xffffff,
+            2.2
+        );
+
+
+    light.position.set(
+        20,
+        30,
+        20
+    );
+
+
+    scene.add(
+        light
+    );
+
+
+    /*
+     * Modell
+     */
+
+    const group =
+        new THREE.Group();
+
+
+    scene.add(
+        group
+    );
+
+
+    const resolved =
+        resolveModel(
+            model
+        );
+
+
+    buildMinecraftModel(
+        resolved,
+        group
+    );
+
+
+    /*
+     * Zentrieren
+     */
+
+    const box =
+        new THREE.Box3()
+            .setFromObject(
+                group
+            );
+
+
+    if (
+        box.isEmpty()
+    ) {
+
+        return "";
+
+    }
+
+
+    const center =
+        box.getCenter(
+            new THREE.Vector3()
+        );
+
+
+    group.position.sub(
+        center
+    );
+
+
+    const size =
+        box.getSize(
+            new THREE.Vector3()
+        );
+
+
+    const maxSize =
+        Math.max(
+            size.x,
+            size.y,
+            size.z
+        );
+
+
+    const distance =
+        Math.max(
+            10,
+            maxSize * 2.2
+        );
+
+
+    camera.position.set(
+        distance,
+        distance * 0.7,
+        distance
+    );
+
+
+    camera.lookAt(
+        0,
+        0,
+        0
+    );
+
+
+    renderer.render(
+        scene,
+        camera
+    );
+
+
+    return renderer
+        .domElement
+        .toDataURL(
+            "image/png"
+        );
 
 }
+
 
 
 /* =========================================================
-   STATUS
+   WAIT
 ========================================================= */
 
-function setStatus(
-    message,
-    className
+function wait(
+    milliseconds
 ) {
 
-    elements.status.textContent =
-        message;
-
-    elements.status.className =
-        `status ${className}`;
+    return new Promise(
+        resolve =>
+            setTimeout(
+                resolve,
+                milliseconds
+            )
+    );
 
 }
+
+
+
+/* =========================================================
+   DEEP CLONE
+========================================================= */
+
+function deepClone(
+    value
+) {
+
+    if (
+        value === null ||
+        value === undefined
+    ) {
+
+        return value;
+
+    }
+
+
+    return JSON.parse(
+        JSON.stringify(
+            value
+        )
+    );
+
+}
+
+
+
+/* =========================================================
+   CSS ESCAPE
+========================================================= */
+
+function cssEscape(
+    value
+) {
+
+    /*
+     * Moderne Browser besitzen
+     * CSS.escape.
+     */
+
+    if (
+        window.CSS &&
+        CSS.escape
+    ) {
+
+        return CSS.escape(
+            value
+        );
+
+    }
+
+
+    return value
+        .replace(
+            /([^\w-])/g,
+            "\\$1"
+        );
+
+}
+
 
 
 /* =========================================================
    ESCAPE HTML
 ========================================================= */
 
-function escapeHtml(value) {
+function escapeHtml(
+    value
+) {
 
     return String(value)
 
@@ -2436,6 +4235,27 @@ function escapeHtml(value) {
 }
 
 
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+function setStatus(
+    message,
+    className
+) {
+
+    elements.status.textContent =
+        message;
+
+
+    elements.status.className =
+        `status ${className}`;
+
+}
+
+
+
 /* =========================================================
    GENERATOR MENU
 ========================================================= */
@@ -2458,10 +4278,12 @@ generatorMenuButton.addEventListener(
 
         event.stopPropagation();
 
+
         const open =
             generatorFlyout.classList.toggle(
                 "open"
             );
+
 
         generatorMenuButton.classList.toggle(
             "active",
@@ -2490,6 +4312,7 @@ document.addEventListener(
             "open"
         );
 
+
         generatorMenuButton.classList.remove(
             "active"
         );
@@ -2497,7 +4320,10 @@ document.addEventListener(
     }
 );
 
+
 </script>
 
+
 </body>
+
 </html>
