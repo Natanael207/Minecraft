@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Custom Resourcepack Tools</title>
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+
+    <!-- Logo -->
+    <a href="index.html" class="site-logo">
+        <div class="site-logo-icon">🧱</div>
+        <span>Custom Resourcepack Tools</span>
+    </a>
+
+    <!-- Navigation -->
+    <div class="header-right">
+
+        <button
+            class="nav-button"
+            id="generatorMenuButton"
+            type="button"
+        >
+            Generatoren
+            <span class="arrow">▼</span>
+        </button>
+
+    </div>
+
+    <!-- Generator Flyout -->
+    <div
+        class="generator-flyout"
+        id="generatorFlyout"
+    >
+
+        <div class="flyout-header">
+            Generator auswählen
+        </div>
+
+        <!-- Model Generator -->
+        <button
+            class="generator-option"
+            type="button"
+            onclick="window.location.href='model-generator.html'"
+        >
+            <div class="generator-icon">
+                🧱
+            </div>
+
+            <div class="generator-text">
+
+                <div class="generator-title">
+                    Model Generator
+                </div>
+
+                <div class="generator-description">
+                    Modelle aus einem Resourcepack anzeigen
+                    und für ein eigenes Resourcepack auswählen.
+                </div>
+
+            </div>
+        </button>
+
+
+        <!-- Item Generator -->
+        <button
+            class="generator-option"
+            type="button"
+            onclick="window.location.href='item-generator.html'"
+        >
+            <div class="generator-icon">
+                🧩
+            </div>
+
+            <div class="generator-text">
+
+                <div class="generator-title">
+                    Item Generator
+                </div>
+
+                <div class="generator-description">
+                    Modelle aus <code>/items/</code> anzeigen
+                    und einem Minecraft-Item zuweisen.
+                </div>
+
+            </div>
+        </button>
+
+    </div>
+
+</header>
+
+
+<main class="site-main">
+
+    <div class="page-heading">
+
+        <div class="eyebrow">
+            Minecraft Resourcepack Tools
+        </div>
+
+        <h1>
+            Custom Resourcepack Tools
+        </h1>
+
+        <p class="page-description">
+            Wähle einen Generator aus, um deine Minecraft
+            Custom Models zu verwalten und daraus ein
+            eigenes Resourcepack zusammenzustellen.
+        </p>
+
+    </div>
+
+
+    <!-- Generator overview -->
+
+    <div class="items-grid">
+
+        <!-- Model Generator Card -->
+
+        <div
+            class="item-card"
+            onclick="window.location.href='model-generator.html'"
+        >
+
+            <div class="item-preview">
+                <div class="item-preview-icon">
+                    🧱
+                </div>
+            </div>
+
+            <div class="item-name">
+                Model Generator
+            </div>
+
+            <div class="item-path">
+                /models/item/ & /models/block/
+            </div>
+
+            <span class="item-type">
+                MODEL
+            </span>
+
+        </div>
+
+
+        <!-- Item Generator Card -->
+
+        <div
+            class="item-card"
+            onclick="window.location.href='item-generator.html'"
+        >
+
+            <div class="item-preview">
+                <div class="item-preview-icon">
+                    🧩
+                </div>
+            </div>
+
+            <div class="item-name">
+                Item Generator
+            </div>
+
+            <div class="item-path">
+                /items/
+            </div>
+
+            <span class="item-type">
+                ITEM
+            </span>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<script>
+
+    /*
+     * =====================================================
+     * Generator Flyout
+     * =====================================================
+     */
+
+    const generatorMenuButton =
+        document.getElementById("generatorMenuButton");
+
+    const generatorFlyout =
+        document.getElementById("generatorFlyout");
+
+
+    /*
+     * Toggle menu
+     */
+
+    generatorMenuButton.addEventListener("click", function (event) {
+
+        event.stopPropagation();
+
+        generatorFlyout.classList.toggle("open");
+
+        generatorMenuButton.classList.toggle(
+            "active",
+            generatorFlyout.classList.contains("open")
+        );
+
+    });
+
+
+    /*
+     * Prevent clicks inside the menu
+     * from closing it immediately.
+     */
+
+    generatorFlyout.addEventListener(
+        "click",
+        function (event) {
+
+            event.stopPropagation();
+
+        }
+    );
+
+
+    /*
+     * Close when clicking somewhere else.
+     */
+
+    document.addEventListener(
+        "click",
+        function () {
+
+            generatorFlyout.classList.remove("open");
+
+            generatorMenuButton.classList.remove("active");
+
+        }
+    );
+
+</script>
+
+</body>
+</html>
