@@ -1,4 +1,5 @@
 {
+	"format_version": "1.21.11",
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
@@ -187,17 +188,20 @@
 		{
 			"name": "Axt",
 			"origin": [0, 0, 0],
+			"scope": 0,
 			"color": 0,
 			"children": [
 				{
 					"name": "griff",
 					"origin": [8, 8, 8],
+					"scope": 0,
 					"color": 0,
 					"children": [0, 1, 2]
 				},
 				{
 					"name": "Klinge",
 					"origin": [0, 0, 0],
+					"scope": 0,
 					"color": 0,
 					"children": [3, 4, 5, 6, 7, 8, 9, 10]
 				}
