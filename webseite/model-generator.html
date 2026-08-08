@@ -3,48 +3,25 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <title>Model Generator</title>
 
-    <title>Model Generator – Custom Resourcepack Tools</title>
+    <link rel="stylesheet" href="css/style.css">
 
-    <link
-        rel="stylesheet"
-        href="css/style.css"
-    >
-
-    <!--
-        WICHTIG:
-        Beide Dateien stammen aus Three.js r149.
-    -->
+    <!-- Three.js r147 -->
     <script src="lib/three.min.js"></script>
     <script src="lib/OrbitControls.js"></script>
 </head>
 
-
 <body>
-
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
 
 <header class="site-header">
 
-    <a
-        href="index.html"
-        class="site-logo"
-    >
+    <a href="index.html" class="site-logo">
         <div class="site-logo-icon">◆</div>
-
-        <span>
-            Custom Resourcepack Tools
-        </span>
+        <span>Custom Resourcepack Tools</span>
     </a>
-
 
     <div class="header-right">
 
@@ -59,16 +36,11 @@
 
     </div>
 
-
-    <div
-        id="generatorFlyout"
-        class="generator-flyout"
-    >
+    <div id="generatorFlyout" class="generator-flyout">
 
         <div class="flyout-header">
             Generator auswählen
         </div>
-
 
         <button
             class="generator-option active"
@@ -87,7 +59,6 @@
                 </div>
             </div>
         </button>
-
 
         <button
             class="generator-option"
@@ -112,13 +83,7 @@
 </header>
 
 
-
-<!-- =====================================================
-     MAIN
-===================================================== -->
-
 <main class="site-main">
-
 
     <section class="page-heading">
 
@@ -131,16 +96,15 @@
         </h1>
 
         <p class="page-description">
-            Lade einen Resourcepack-Ordner und durchsuche
-            die enthaltenen Item- und Block-Modelle.
+            Durchsuche die Item- und Block-Models deines
+            Minecraft Resourcepacks.
         </p>
 
     </section>
 
 
-
-    <!-- =================================================
-         RESOURCEPACK
+    <!-- ==================================================
+         RESOURCEPACK LADEN
     ================================================== -->
 
     <section class="loader-panel">
@@ -155,14 +119,12 @@
 
                 <div class="loader-description">
                     Wähle den entpackten Resourcepack-Ordner.
-                    Der Generator durchsucht automatisch
-                    <code>assets/minecraft/models/item</code>
-                    und
-                    <code>assets/minecraft/models/block</code>.
+                    Es werden automatisch
+                    <code>models/item</code> und
+                    <code>models/block</code> durchsucht.
                 </div>
 
             </div>
-
 
             <label
                 for="resourcepackInput"
@@ -170,7 +132,6 @@
             >
                 Resourcepack auswählen
             </label>
-
 
             <input
                 id="resourcepackInput"
@@ -182,31 +143,19 @@
 
         </div>
 
-
-        <div
-            id="loadedPack"
-            class="loaded-pack"
-        ></div>
+        <div id="loadedPack" class="loaded-pack"></div>
 
     </section>
 
 
-
-    <div
-        id="status"
-        class="status"
-    ></div>
+    <div id="status" class="status"></div>
 
 
-
-    <!-- =================================================
+    <!-- ==================================================
          TOOLBAR
     ================================================== -->
 
-    <div
-        id="toolbar"
-        class="toolbar"
-    >
+    <div id="toolbar" class="toolbar">
 
         <div class="search">
 
@@ -223,11 +172,7 @@
 
         </div>
 
-
-        <select
-            id="sortSelect"
-            class="sort-select"
-        >
+        <select id="sortSelect" class="sort-select">
 
             <option value="name">
                 Name
@@ -243,26 +188,18 @@
 
         </select>
 
-
-        <div
-            id="itemCount"
-            class="item-count"
-        >
+        <div id="itemCount" class="item-count">
             0 Modelle
         </div>
 
     </div>
 
 
-
-    <!-- =================================================
-         CATEGORIES
+    <!-- ==================================================
+         KATEGORIEN
     ================================================== -->
 
-    <div
-        id="categoryTabs"
-        class="category-tabs"
-    >
+    <div id="categoryTabs" class="category-tabs">
 
         <button
             class="category-button active"
@@ -291,22 +228,14 @@
     </div>
 
 
-
-    <!-- =================================================
+    <!-- ==================================================
          MODEL GRID
     ================================================== -->
 
-    <section
-        id="itemsGrid"
-        class="items-grid"
-    ></section>
+    <section id="itemsGrid" class="items-grid"></section>
 
 
-
-    <section
-        id="emptyState"
-        class="empty visible"
-    >
+    <section id="emptyState" class="empty visible">
 
         <div class="empty-icon">
             🧱
@@ -326,28 +255,19 @@
 </main>
 
 
-
-<!-- =====================================================
+<!-- ====================================================
      MODEL MODAL
 ===================================================== -->
 
-<div
-    id="modelModal"
-    class="modal-overlay"
->
+<div id="modelModal" class="modal-overlay">
 
     <div class="modal">
 
-
         <div class="modal-header">
 
-            <div
-                id="modalTitle"
-                class="modal-title"
-            >
+            <div id="modalTitle" class="modal-title">
                 Model
             </div>
-
 
             <button
                 id="closeModal"
@@ -378,17 +298,14 @@
                     Model
                 </h3>
 
-
                 <div
                     id="modalFilePath"
                     class="detail-file"
                 ></div>
 
-
                 <div class="detail-section-title">
                     JSON
                 </div>
-
 
                 <div class="json-container">
 
@@ -411,7 +328,6 @@
                 Schließen
             </button>
 
-
             <button
                 id="selectModelButton"
                 class="button primary"
@@ -427,12 +343,39 @@
 </div>
 
 
-
 <script>
 
-/* =====================================================
+/* =========================================================
+   THREE.JS CHECK
+========================================================= */
+
+if (typeof THREE === "undefined") {
+
+    alert(
+        "Three.js konnte nicht geladen werden.\n\n" +
+        "Bitte überprüfe:\n" +
+        "lib/three.min.js"
+    );
+
+}
+
+if (
+    typeof THREE !== "undefined" &&
+    typeof THREE.OrbitControls === "undefined"
+) {
+
+    alert(
+        "OrbitControls konnte nicht geladen werden.\n\n" +
+        "Bitte verwende die klassische OrbitControls.js " +
+        "aus Three.js r147/examples/js/controls/."
+    );
+
+}
+
+
+/* =========================================================
    STATE
-===================================================== */
+========================================================= */
 
 const state = {
 
@@ -450,15 +393,16 @@ const state = {
 
     modalRenderer: null,
 
-    modalAnimation: null
+    modalAnimation: null,
+
+    modalResizeHandler: null
 
 };
 
 
-
-/* =====================================================
+/* =========================================================
    DOM
-===================================================== */
+========================================================= */
 
 const elements = {
 
@@ -522,50 +466,16 @@ const elements = {
 };
 
 
-
-/* =====================================================
+/* =========================================================
    TEXTURE CACHE
-===================================================== */
+========================================================= */
 
 const textureCache = new Map();
 
 
-
-/* =====================================================
-   CHECK THREE.JS
-===================================================== */
-
-if (
-    typeof THREE === "undefined"
-) {
-
-    alert(
-        "Three.js konnte nicht geladen werden.\n\n" +
-        "Prüfe bitte:\n" +
-        "lib/three.min.js"
-    );
-
-}
-
-
-if (
-    typeof THREE !== "undefined" &&
-    typeof THREE.OrbitControls === "undefined"
-) {
-
-    alert(
-        "OrbitControls konnte nicht geladen werden.\n\n" +
-        "Bitte stelle sicher, dass du die r149-Version " +
-        "von OrbitControls.js verwendest."
-    );
-
-}
-
-
-
-/* =====================================================
-   RESOURCEPACK INPUT
-===================================================== */
+/* =========================================================
+   RESOURCEPACK
+========================================================= */
 
 elements.resourcepackInput.addEventListener(
     "change",
@@ -573,53 +483,36 @@ elements.resourcepackInput.addEventListener(
 );
 
 
-
 async function handleResourcepackSelection(event) {
 
     const files =
         Array.from(event.target.files);
 
-
     if (!files.length) {
         return;
     }
 
+    state.files = files;
 
-    state.files =
-        files;
-
-
-    state.models =
-        [];
-
+    state.models = [];
 
     state.selectedModels.clear();
-
 
     setStatus(
         "Resourcepack wird durchsucht...",
         "visible"
     );
 
-
     const models =
         await findModels(files);
 
+    state.models = models;
 
-    state.models =
-        models;
-
-
-    updateLoadedPackInfo(
-        files
-    );
-
+    updateLoadedPackInfo(files);
 
     showGeneratorUI();
 
-
     applyFilters();
-
 
     if (!models.length) {
 
@@ -640,59 +533,44 @@ async function handleResourcepackSelection(event) {
 }
 
 
-
-/* =====================================================
+/* =========================================================
    FIND MODELS
-===================================================== */
+========================================================= */
 
 async function findModels(files) {
 
     const models = [];
 
-
-    for (
-        const file of files
-    ) {
+    for (const file of files) {
 
         const path =
             getRelativePath(file);
 
-
         const normalizedPath =
-            path.replaceAll(
-                "\\",
-                "/"
-            );
-
+            path.replace(/\\/g, "/");
 
         const match =
             normalizedPath.match(
                 /assets\/minecraft\/models\/(item|block)\/(.+\.json)$/i
             );
 
-
         if (!match) {
             continue;
         }
-
 
         try {
 
             const text =
                 await file.text();
 
-
             const json =
                 JSON.parse(text);
-
 
             const type =
                 match[1].toLowerCase();
 
-
             const relativePath =
                 match[2];
-
 
             const name =
                 relativePath
@@ -702,7 +580,6 @@ async function findModels(files) {
                         /\.json$/i,
                         ""
                     );
-
 
             models.push({
 
@@ -721,8 +598,7 @@ async function findModels(files) {
 
             });
 
-        }
-        catch (error) {
+        } catch (error) {
 
             console.warn(
                 "Ungültiges Model:",
@@ -734,16 +610,14 @@ async function findModels(files) {
 
     }
 
-
     return models;
 
 }
 
 
-
-/* =====================================================
+/* =========================================================
    PATH
-===================================================== */
+========================================================= */
 
 function getRelativePath(file) {
 
@@ -755,10 +629,9 @@ function getRelativePath(file) {
 }
 
 
-
-/* =====================================================
+/* =========================================================
    UI
-===================================================== */
+========================================================= */
 
 function showGeneratorUI() {
 
@@ -766,11 +639,9 @@ function showGeneratorUI() {
         "visible"
     );
 
-
     elements.categoryTabs.classList.add(
         "visible"
     );
-
 
     elements.emptyState.classList.remove(
         "visible"
@@ -779,36 +650,26 @@ function showGeneratorUI() {
 }
 
 
-
-/* =====================================================
+/* =========================================================
    LOADED PACK
-===================================================== */
+========================================================= */
 
 function updateLoadedPackInfo(files) {
 
     const firstPath =
-        getRelativePath(
-            files[0]
-        );
-
+        getRelativePath(files[0]);
 
     const rootFolder =
         firstPath.split("/")[0];
 
-
     elements.loadedPack.innerHTML = `
-
         <strong>Geladen:</strong>
         ${escapeHtml(rootFolder)}
-
         <br>
-
         <span>
             ${files.length} Dateien durchsucht
         </span>
-
     `;
-
 
     elements.loadedPack.classList.add(
         "visible"
@@ -817,16 +678,14 @@ function updateLoadedPackInfo(files) {
 }
 
 
-
-/* =====================================================
+/* =========================================================
    FILTERS
-===================================================== */
+========================================================= */
 
 elements.searchInput.addEventListener(
     "input",
     applyFilters
 );
-
 
 elements.sortSelect.addEventListener(
     "change",
@@ -846,22 +705,18 @@ document
                     .querySelectorAll(
                         ".category-button"
                     )
-                    .forEach(
-                        button =>
-                            button.classList.remove(
-                                "active"
-                            )
+                    .forEach(button =>
+                        button.classList.remove(
+                            "active"
+                        )
                     );
-
 
                 button.classList.add(
                     "active"
                 );
 
-
                 state.activeCategory =
                     button.dataset.category;
-
 
                 applyFilters();
 
@@ -871,14 +726,12 @@ document
     });
 
 
-
 function applyFilters() {
 
     const search =
         elements.searchInput.value
             .trim()
             .toLowerCase();
-
 
     let models =
         [...state.models];
@@ -903,7 +756,6 @@ function applyFilters() {
         models =
             models.filter(
                 model =>
-
                     model.name
                         .toLowerCase()
                         .includes(search)
@@ -913,7 +765,6 @@ function applyFilters() {
                     model.path
                         .toLowerCase()
                         .includes(search)
-
             );
 
     }
@@ -923,66 +774,52 @@ function applyFilters() {
         elements.sortSelect.value;
 
 
-    models.sort(
-        (a, b) => {
+    models.sort((a, b) => {
 
-            if (
-                sort === "path"
-            ) {
+        if (sort === "path") {
 
-                return a.path.localeCompare(
-                    b.path
-                );
-
-            }
-
-
-            if (
-                sort === "type"
-            ) {
-
-                return a.type.localeCompare(
-                    b.type
-                );
-
-            }
-
-
-            return a.name.localeCompare(
-                b.name
+            return a.path.localeCompare(
+                b.path
             );
 
         }
-    );
+
+        if (sort === "type") {
+
+            return a.type.localeCompare(
+                b.type
+            );
+
+        }
+
+        return a.name.localeCompare(
+            b.name
+        );
+
+    });
 
 
     state.filteredModels =
         models;
-
 
     renderModels();
 
 }
 
 
-
-/* =====================================================
-   MODEL CARDS
-===================================================== */
+/* =========================================================
+   RENDER MODEL CARDS
+========================================================= */
 
 function renderModels() {
 
-    elements.itemsGrid.innerHTML =
-        "";
-
+    elements.itemsGrid.innerHTML = "";
 
     elements.itemCount.textContent =
         `${state.filteredModels.length} Modelle`;
 
 
-    if (
-        !state.filteredModels.length
-    ) {
+    if (!state.filteredModels.length) {
 
         elements.emptyState.classList.add(
             "visible"
@@ -1011,28 +848,26 @@ function renderModels() {
 }
 
 
-
-/* =====================================================
+/* =========================================================
    MODEL CARD
-===================================================== */
+========================================================= */
 
 function createModelCard(model) {
 
     const card =
         document.createElement("article");
 
-
     card.className =
         "item-card";
 
 
-    const isSelected =
+    const selected =
         state.selectedModels.has(
             model.path
         );
 
 
-    if (isSelected) {
+    if (selected) {
 
         card.classList.add(
             "selected"
@@ -1041,24 +876,18 @@ function createModelCard(model) {
     }
 
 
-    /*
-     * Checkbox
-     */
+    /* Checkbox */
 
     const checkbox =
         document.createElement("input");
 
-
-    checkbox.type =
-        "checkbox";
-
+    checkbox.type = "checkbox";
 
     checkbox.className =
         "model-checkbox";
 
-
     checkbox.checked =
-        isSelected;
+        selected;
 
 
     checkbox.addEventListener(
@@ -1084,20 +913,10 @@ function createModelCard(model) {
     );
 
 
-    /*
-     * Preview.
-     *
-     * WICHTIG:
-     * Hier verwenden wir KEINEN
-     * WebGL-Renderer pro Karte.
-     *
-     * Die Vorschau wird als 2D-Canvas
-     * gezeichnet.
-     */
+    /* Preview */
 
     const preview =
         document.createElement("div");
-
 
     preview.className =
         "item-preview";
@@ -1106,133 +925,87 @@ function createModelCard(model) {
     const canvas =
         document.createElement("canvas");
 
+    canvas.width = 240;
 
-    canvas.width =
-        240;
-
-
-    canvas.height =
-        180;
-
+    canvas.height = 180;
 
     canvas.className =
         "model-preview-canvas";
 
 
-    preview.appendChild(
-        canvas
-    );
+    preview.appendChild(canvas);
 
 
-    /*
-     * Information
-     */
+    /* Name */
 
     const name =
         document.createElement("div");
 
-
     name.className =
         "item-name";
-
 
     name.textContent =
         model.name;
 
 
+    /* Path */
+
     const path =
         document.createElement("div");
 
-
     path.className =
         "item-path";
-
 
     path.textContent =
         model.relativePath;
 
 
+    /* Type */
+
     const type =
         document.createElement("span");
 
-
     type.className =
         "item-type";
-
 
     type.textContent =
         model.type.toUpperCase();
 
 
-    /*
-     * Selection badge
-     */
+    /* Selected badge */
 
     const badge =
         document.createElement("div");
 
-
     badge.className =
         "selected-badge";
-
 
     badge.textContent =
         "✓";
 
 
-    /*
-     * Assemble
-     */
+    card.appendChild(checkbox);
 
-    card.appendChild(
-        checkbox
-    );
+    card.appendChild(badge);
 
+    card.appendChild(preview);
 
-    card.appendChild(
-        badge
-    );
+    card.appendChild(name);
 
+    card.appendChild(path);
 
-    card.appendChild(
-        preview
-    );
+    card.appendChild(type);
 
-
-    card.appendChild(
-        name
-    );
-
-
-    card.appendChild(
-        path
-    );
-
-
-    card.appendChild(
-        type
-    );
-
-
-    /*
-     * Card opens modal.
-     */
 
     card.addEventListener(
         "click",
         () => {
 
-            openModelModal(
-                model
-            );
+            openModelModal(model);
 
         }
     );
 
-
-    /*
-     * Render preview as 2D.
-     */
 
     drawModelPreview(
         model,
@@ -1245,10 +1018,9 @@ function createModelCard(model) {
 }
 
 
-
-/* =====================================================
+/* =========================================================
    SELECTION
-===================================================== */
+========================================================= */
 
 function setModelSelected(
     model,
@@ -1272,16 +1044,14 @@ function setModelSelected(
 
     renderModels();
 
-
     updateModalSelectionButton();
 
 }
 
 
-
-/* =====================================================
+/* =========================================================
    MODAL
-===================================================== */
+========================================================= */
 
 function openModelModal(model) {
 
@@ -1317,23 +1087,18 @@ function openModelModal(model) {
     );
 
 
-    requestAnimationFrame(
-        () => {
+    requestAnimationFrame(() => {
 
-            createModalViewer(
-                model
-            );
+        createModalViewer(model);
 
-        }
-    );
+    });
 
 }
 
 
-
-/* =====================================================
-   MODAL SELECTION BUTTON
-===================================================== */
+/* =========================================================
+   MODAL SELECTION
+========================================================= */
 
 function updateModalSelectionButton() {
 
@@ -1354,7 +1119,6 @@ function updateModalSelectionButton() {
             : "Modell auswählen";
 
 }
-
 
 
 elements.selectModelButton.addEventListener(
@@ -1385,16 +1149,14 @@ elements.selectModelButton.addEventListener(
 );
 
 
-
-/* =====================================================
+/* =========================================================
    CLOSE MODAL
-===================================================== */
+========================================================= */
 
 elements.closeModal.addEventListener(
     "click",
     closeModal
 );
-
 
 elements.closeModalButton.addEventListener(
     "click",
@@ -1423,9 +1185,7 @@ document.addEventListener(
     "keydown",
     event => {
 
-        if (
-            event.key === "Escape"
-        ) {
+        if (event.key === "Escape") {
 
             closeModal();
 
@@ -1435,20 +1195,16 @@ document.addEventListener(
 );
 
 
-
 function closeModal() {
 
     stopModalViewer();
-
 
     elements.modelModal.classList.remove(
         "open"
     );
 
-
     state.currentModel =
         null;
-
 
     elements.modalViewer.innerHTML =
         "";
@@ -1456,15 +1212,13 @@ function closeModal() {
 }
 
 
-
-/* =====================================================
-   MODAL THREE.JS VIEWER
-===================================================== */
+/* =========================================================
+   THREE.JS MODAL VIEWER
+========================================================= */
 
 function createModalViewer(model) {
 
     stopModalViewer();
-
 
     elements.modalViewer.innerHTML =
         "";
@@ -1472,7 +1226,6 @@ function createModalViewer(model) {
 
     const width =
         elements.modalViewer.clientWidth;
-
 
     const height =
         elements.modalViewer.clientHeight;
@@ -1488,13 +1241,10 @@ function createModalViewer(model) {
     }
 
 
-    /*
-     * Scene
-     */
+    /* Scene */
 
     const scene =
         new THREE.Scene();
-
 
     scene.background =
         new THREE.Color(
@@ -1502,9 +1252,7 @@ function createModalViewer(model) {
         );
 
 
-    /*
-     * Camera
-     */
+    /* Camera */
 
     const camera =
         new THREE.PerspectiveCamera(
@@ -1522,9 +1270,7 @@ function createModalViewer(model) {
     );
 
 
-    /*
-     * Renderer
-     */
+    /* Renderer */
 
     const renderer =
         new THREE.WebGLRenderer({
@@ -1556,12 +1302,7 @@ function createModalViewer(model) {
     );
 
 
-    /*
-     * OrbitControls
-     *
-     * Das funktioniert mit der
-     * klassischen r149-Version.
-     */
+    /* OrbitControls */
 
     const controls =
         new THREE.OrbitControls(
@@ -1573,37 +1314,28 @@ function createModalViewer(model) {
     controls.enableDamping =
         true;
 
-
     controls.dampingFactor =
         0.08;
-
 
     controls.minDistance =
         5;
 
-
     controls.maxDistance =
         150;
-
 
     controls.enablePan =
         true;
 
 
-    /*
-     * Lighting
-     */
+    /* Lighting */
 
     const ambient =
         new THREE.AmbientLight(
             0xffffff,
-            1.7
+            1.8
         );
 
-
-    scene.add(
-        ambient
-    );
+    scene.add(ambient);
 
 
     const light =
@@ -1612,17 +1344,13 @@ function createModalViewer(model) {
             2.2
         );
 
-
     light.position.set(
         20,
         30,
         20
     );
 
-
-    scene.add(
-        light
-    );
+    scene.add(light);
 
 
     const light2 =
@@ -1631,30 +1359,21 @@ function createModalViewer(model) {
             0.7
         );
 
-
     light2.position.set(
         -20,
         10,
         -20
     );
 
-
-    scene.add(
-        light2
-    );
+    scene.add(light2);
 
 
-    /*
-     * Model
-     */
+    /* Model */
 
     const modelGroup =
         new THREE.Group();
 
-
-    scene.add(
-        modelGroup
-    );
+    scene.add(modelGroup);
 
 
     buildMinecraftModel(
@@ -1670,9 +1389,11 @@ function createModalViewer(model) {
     );
 
 
-    /*
-     * Animation
-     */
+    /* Animation */
+
+    state.modalRenderer =
+        renderer;
+
 
     function animate() {
 
@@ -1703,80 +1424,61 @@ function createModalViewer(model) {
     }
 
 
-    state.modalRenderer =
-        renderer;
-
-
     animate();
 
 
-    /*
-     * Resize
-     */
+    /* Resize */
 
-    const resizeObserver =
-        new ResizeObserver(
-            () => {
+    state.modalResizeHandler =
+        () => {
 
-                if (
-                    state.modalRenderer !==
-                    renderer
-                ) {
+            if (
+                state.modalRenderer !==
+                renderer
+            ) {
 
-                    return;
-
-                }
-
-
-                const w =
-                    elements.modalViewer.clientWidth;
-
-
-                const h =
-                    elements.modalViewer.clientHeight;
-
-
-                if (
-                    !w ||
-                    !h
-                ) {
-
-                    return;
-
-                }
-
-
-                camera.aspect =
-                    w / h;
-
-
-                camera.updateProjectionMatrix();
-
-
-                renderer.setSize(
-                    w,
-                    h
-                );
+                return;
 
             }
-        );
 
 
-    resizeObserver.observe(
-        elements.modalViewer
+            const w =
+                elements.modalViewer.clientWidth;
+
+            const h =
+                elements.modalViewer.clientHeight;
+
+
+            if (!w || !h) {
+                return;
+            }
+
+
+            camera.aspect =
+                w / h;
+
+            camera.updateProjectionMatrix();
+
+
+            renderer.setSize(
+                w,
+                h
+            );
+
+        };
+
+
+    window.addEventListener(
+        "resize",
+        state.modalResizeHandler
     );
-
-
-    state.modalResizeObserver =
-        resizeObserver;
 
 }
 
 
-
-/* =====================================================
-   STOP MODAL VIEWER
-===================================================== */
+/* =========================================================
+   STOP VIEWER
+========================================================= */
 
 function stopModalViewer() {
 
@@ -1795,12 +1497,15 @@ function stopModalViewer() {
 
 
     if (
-        state.modalResizeObserver
+        state.modalResizeHandler
     ) {
 
-        state.modalResizeObserver.disconnect();
+        window.removeEventListener(
+            "resize",
+            state.modalResizeHandler
+        );
 
-        state.modalResizeObserver =
+        state.modalResizeHandler =
             null;
 
     }
@@ -1812,7 +1517,6 @@ function stopModalViewer() {
 
         state.modalRenderer.dispose();
 
-
         if (
             state.modalRenderer.domElement
         ) {
@@ -1820,7 +1524,6 @@ function stopModalViewer() {
             state.modalRenderer.domElement.remove();
 
         }
-
 
         state.modalRenderer =
             null;
@@ -1830,10 +1533,9 @@ function stopModalViewer() {
 }
 
 
-
-/* =====================================================
+/* =========================================================
    MINECRAFT MODEL
-===================================================== */
+========================================================= */
 
 function buildMinecraftModel(
     json,
@@ -1841,12 +1543,9 @@ function buildMinecraftModel(
 ) {
 
     /*
-     * Modelle ohne elements können
-     * beispielsweise parent-basierte
-     * Modelle sein.
-     *
-     * Für diese erste Version zeigen
-     * wir einen Hinweiswürfel.
+     * Für die nächste Version werden wir
+     * hier noch Parent-Modelle vollständig
+     * auflösen.
      */
 
     if (
@@ -1866,7 +1565,8 @@ function buildMinecraftModel(
 
         const material =
             new THREE.MeshStandardMaterial({
-                color: 0x777777
+                color: 0x777777,
+                side: THREE.FrontSide
             });
 
 
@@ -1877,10 +1577,7 @@ function buildMinecraftModel(
             );
 
 
-        group.add(
-            cube
-        );
-
+        group.add(cube);
 
         return;
 
@@ -1902,10 +1599,9 @@ function buildMinecraftModel(
 }
 
 
-
-/* =====================================================
-   ELEMENT
-===================================================== */
+/* =========================================================
+   MODEL ELEMENT
+========================================================= */
 
 function buildElement(
     element,
@@ -1926,7 +1622,6 @@ function buildElement(
     const from =
         element.from;
 
-
     const to =
         element.to;
 
@@ -1937,13 +1632,11 @@ function buildElement(
             to[0] - from[0]
         );
 
-
     const sizeY =
         Math.max(
             0.01,
             to[1] - from[1]
         );
-
 
     const sizeZ =
         Math.max(
@@ -1974,11 +1667,6 @@ function buildElement(
         );
 
 
-    /*
-     * Minecraft coordinates
-     * 0..16 → centered around 0.
-     */
-
     mesh.position.set(
 
         (from[0] + to[0]) / 2 - 8,
@@ -1992,10 +1680,6 @@ function buildElement(
     );
 
 
-    /*
-     * Rotation
-     */
-
     if (
         element.rotation
     ) {
@@ -2008,43 +1692,27 @@ function buildElement(
     }
 
 
-    group.add(
-        mesh
-    );
+    group.add(mesh);
 
 }
 
 
-
-/* =====================================================
-   FACE MATERIALS
-===================================================== */
+/* =========================================================
+   MATERIALS
+========================================================= */
 
 function createFaceMaterials(
     element,
     model
 ) {
 
-    /*
-     * THREE.BoxGeometry expects:
-     *
-     * right
-     * left
-     * top
-     * bottom
-     * front
-     * back
-     */
-
     const faces = [
-
         "right",
         "left",
         "top",
         "bottom",
         "front",
         "back"
-
     ];
 
 
@@ -2064,7 +1732,8 @@ function createFaceMaterials(
 
             materials.push(
                 new THREE.MeshStandardMaterial({
-                    color: 0x777777
+                    color: 0x777777,
+                    side: THREE.FrontSide
                 })
             );
 
@@ -2088,6 +1757,16 @@ function createFaceMaterials(
 
         if (texture) {
 
+            texture.magFilter =
+                THREE.NearestFilter;
+
+            texture.minFilter =
+                THREE.NearestFilter;
+
+            texture.generateMipmaps =
+                false;
+
+
             const material =
                 new THREE.MeshStandardMaterial({
 
@@ -2095,24 +1774,12 @@ function createFaceMaterials(
 
                     transparent: true,
 
-                    alphaTest: 0.05,
+                    alphaTest: 0.5,
 
                     side:
-                        THREE.DoubleSide
+                        THREE.FrontSide
 
                 });
-
-
-            /*
-             * Minecraft uses pixel-art textures.
-             */
-
-            material.map.magFilter =
-                THREE.NearestFilter;
-
-
-            material.map.minFilter =
-                THREE.NearestFilter;
 
 
             materials.push(
@@ -2122,17 +1789,14 @@ function createFaceMaterials(
         } else {
 
             materials.push(
-
                 new THREE.MeshStandardMaterial({
 
-                    color:
-                        0x777777,
+                    color: 0x777777,
 
                     side:
-                        THREE.DoubleSide
+                        THREE.FrontSide
 
                 })
-
             );
 
         }
@@ -2145,10 +1809,9 @@ function createFaceMaterials(
 }
 
 
-
-/* =====================================================
+/* =========================================================
    TEXTURE REFERENCE
-===================================================== */
+========================================================= */
 
 function resolveTextureReference(
     reference,
@@ -2181,9 +1844,7 @@ function resolveTextureReference(
         }
 
 
-        visited.add(
-            current
-        );
+        visited.add(current);
 
 
         const key =
@@ -2212,10 +1873,9 @@ function resolveTextureReference(
 }
 
 
-
-/* =====================================================
+/* =========================================================
    FIND TEXTURE
-===================================================== */
+========================================================= */
 
 function findTexture(
     textureName
@@ -2229,14 +1889,6 @@ function findTexture(
     let path =
         textureName;
 
-
-    /*
-     * namespace entfernen
-     *
-     * minecraft:item/diamond
-     *
-     * → item/diamond
-     */
 
     if (
         path.includes(":")
@@ -2265,8 +1917,8 @@ function findTexture(
 
         const filePath =
             getRelativePath(file)
-                .replaceAll(
-                    "\\",
+                .replace(
+                    /\\/g,
                     "/"
                 );
 
@@ -2275,9 +1927,7 @@ function findTexture(
             filePath === wantedPath
         ) {
 
-            return loadTexture(
-                file
-            );
+            return loadTexture(file);
 
         }
 
@@ -2289,14 +1939,11 @@ function findTexture(
 }
 
 
-
-/* =====================================================
+/* =========================================================
    LOAD TEXTURE
-===================================================== */
+========================================================= */
 
-function loadTexture(
-    file
-) {
+function loadTexture(file) {
 
     const key =
         getRelativePath(file);
@@ -2312,9 +1959,7 @@ function loadTexture(
 
 
     const url =
-        URL.createObjectURL(
-            file
-        );
+        URL.createObjectURL(file);
 
 
     const texture =
@@ -2325,19 +1970,11 @@ function loadTexture(
     texture.magFilter =
         THREE.NearestFilter;
 
-
     texture.minFilter =
         THREE.NearestFilter;
 
-
     texture.generateMipmaps =
         false;
-
-
-    /*
-     * r149 uses encoding rather
-     * than colorSpace.
-     */
 
     texture.encoding =
         THREE.sRGBEncoding;
@@ -2354,10 +1991,9 @@ function loadTexture(
 }
 
 
-
-/* =====================================================
-   ELEMENT ROTATION
-===================================================== */
+/* =========================================================
+   ROTATION
+========================================================= */
 
 function applyElementRotation(
     mesh,
@@ -2377,10 +2013,6 @@ function applyElementRotation(
             rotation.angle || 0
         );
 
-
-    /*
-     * Rotation origin
-     */
 
     mesh.position.sub(
         new THREE.Vector3(
@@ -2402,26 +2034,18 @@ function applyElementRotation(
     ) {
 
         case "x":
-
             mesh.rotation.x =
                 angle;
-
             break;
-
 
         case "y":
-
             mesh.rotation.y =
                 -angle;
-
             break;
 
-
         case "z":
-
             mesh.rotation.z =
                 -angle;
-
             break;
 
     }
@@ -2429,10 +2053,9 @@ function applyElementRotation(
 }
 
 
-
-/* =====================================================
+/* =========================================================
    CENTER MODEL
-===================================================== */
+========================================================= */
 
 function centerObject(
     object,
@@ -2441,9 +2064,8 @@ function centerObject(
 ) {
 
     const box =
-        new THREE.Box3().setFromObject(
-            object
-        );
+        new THREE.Box3()
+            .setFromObject(object);
 
 
     const center =
@@ -2458,9 +2080,7 @@ function centerObject(
         );
 
 
-    object.position.sub(
-        center
-    );
+    object.position.sub(center);
 
 
     const maxSize =
@@ -2497,21 +2117,9 @@ function centerObject(
 }
 
 
-
-/* =====================================================
-   2D MODEL PREVIEW
-===================================================== */
-
-/*
- * Wir verwenden absichtlich KEINEN zweiten
- * WebGL-Renderer pro Karte.
- *
- * Stattdessen wird die Vorschau mit
- * Canvas 2D gezeichnet.
- *
- * Dadurch können 100+ Karten angezeigt
- * werden, ohne 100 WebGL-Kontexte zu erzeugen.
- */
+/* =========================================================
+   2D PREVIEW
+========================================================= */
 
 function drawModelPreview(
     model,
@@ -2519,14 +2127,11 @@ function drawModelPreview(
 ) {
 
     const ctx =
-        canvas.getContext(
-            "2d"
-        );
+        canvas.getContext("2d");
 
 
     const width =
         canvas.width;
-
 
     const height =
         canvas.height;
@@ -2540,10 +2145,6 @@ function drawModelPreview(
     );
 
 
-    /*
-     * Hintergrund
-     */
-
     ctx.fillStyle =
         "#20242b";
 
@@ -2556,11 +2157,6 @@ function drawModelPreview(
     );
 
 
-    /*
-     * Wenn keine elements vorhanden sind,
-     * zeigen wir einen Hinweis.
-     */
-
     if (
         !model.json ||
         !Array.isArray(
@@ -2571,21 +2167,17 @@ function drawModelPreview(
         ctx.fillStyle =
             "#777d86";
 
-
         ctx.font =
             "14px sans-serif";
 
-
         ctx.textAlign =
             "center";
-
 
         ctx.fillText(
             "Parent Model",
             width / 2,
             height / 2
         );
-
 
         return;
 
@@ -2596,10 +2188,6 @@ function drawModelPreview(
         model.json.elements;
 
 
-    /*
-     * Einfache isometrische Darstellung.
-     */
-
     const scale =
         Math.min(
             width,
@@ -2609,7 +2197,6 @@ function drawModelPreview(
 
     const centerX =
         width / 2;
-
 
     const centerY =
         height / 2;
@@ -2641,18 +2228,12 @@ function drawModelPreview(
     }
 
 
-    /*
-     * Wir zeichnen zuerst die Elemente
-     * und erzeugen eine einfache 3D-Ansicht.
-     */
-
     for (
         const element of elements
     ) {
 
         const from =
             element.from;
-
 
         const to =
             element.to;
@@ -2665,14 +2246,12 @@ function drawModelPreview(
                 from[2]
             );
 
-
         const p2 =
             project(
                 to[0],
                 from[1],
                 from[2]
             );
-
 
         const p3 =
             project(
@@ -2681,22 +2260,12 @@ function drawModelPreview(
                 from[2]
             );
 
-
         const p4 =
             project(
                 from[0],
                 to[1],
                 from[2]
             );
-
-
-        const p5 =
-            project(
-                from[0],
-                from[1],
-                to[2]
-            );
-
 
         const p6 =
             project(
@@ -2705,14 +2274,12 @@ function drawModelPreview(
                 to[2]
             );
 
-
         const p7 =
             project(
                 to[0],
                 to[1],
                 to[2]
             );
-
 
         const p8 =
             project(
@@ -2721,10 +2288,6 @@ function drawModelPreview(
                 to[2]
             );
 
-
-        /*
-         * Top
-         */
 
         drawPolygon(
             ctx,
@@ -2738,10 +2301,6 @@ function drawModelPreview(
         );
 
 
-        /*
-         * Right
-         */
-
         drawPolygon(
             ctx,
             [
@@ -2753,10 +2312,6 @@ function drawModelPreview(
             "#858b94"
         );
 
-
-        /*
-         * Left / Front
-         */
 
         drawPolygon(
             ctx,
@@ -2774,10 +2329,9 @@ function drawModelPreview(
 }
 
 
-
-/* =====================================================
-   DRAW POLYGON
-===================================================== */
+/* =========================================================
+   POLYGON
+========================================================= */
 
 function drawPolygon(
     ctx,
@@ -2814,27 +2368,23 @@ function drawPolygon(
     ctx.fillStyle =
         color;
 
-
     ctx.fill();
 
 
     ctx.strokeStyle =
         "#30343a";
 
-
     ctx.lineWidth =
         1;
-
 
     ctx.stroke();
 
 }
 
 
-
-/* =====================================================
+/* =========================================================
    STATUS
-===================================================== */
+========================================================= */
 
 function setStatus(
     message,
@@ -2844,56 +2394,51 @@ function setStatus(
     elements.status.textContent =
         message;
 
-
     elements.status.className =
         `status ${className}`;
 
 }
 
 
-
-/* =====================================================
+/* =========================================================
    ESCAPE HTML
-===================================================== */
+========================================================= */
 
-function escapeHtml(
-    value
-) {
+function escapeHtml(value) {
 
     return String(value)
 
-        .replaceAll(
-            "&",
+        .replace(
+            /&/g,
             "&amp;"
         )
 
-        .replaceAll(
-            "<",
+        .replace(
+            /</g,
             "&lt;"
         )
 
-        .replaceAll(
-            ">",
+        .replace(
+            />/g,
             "&gt;"
         )
 
-        .replaceAll(
-            '"',
+        .replace(
+            /"/g,
             "&quot;"
         )
 
-        .replaceAll(
-            "'",
+        .replace(
+            /'/g,
             "&#039;"
         );
 
 }
 
 
-
-/* =====================================================
+/* =========================================================
    GENERATOR MENU
-===================================================== */
+========================================================= */
 
 const generatorMenuButton =
     document.getElementById(
@@ -2913,12 +2458,10 @@ generatorMenuButton.addEventListener(
 
         event.stopPropagation();
 
-
         const open =
             generatorFlyout.classList.toggle(
                 "open"
             );
-
 
         generatorMenuButton.classList.toggle(
             "active",
@@ -2947,7 +2490,6 @@ document.addEventListener(
             "open"
         );
 
-
         generatorMenuButton.classList.remove(
             "active"
         );
@@ -2956,7 +2498,6 @@ document.addEventListener(
 );
 
 </script>
-
 
 </body>
 </html>
