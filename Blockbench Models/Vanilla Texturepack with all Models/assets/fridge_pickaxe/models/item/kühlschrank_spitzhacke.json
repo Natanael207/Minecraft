@@ -1,12 +1,13 @@
 {
+	"format_version": "1.21.11",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"1": "block/iron_block",
-		"2": "block/iron_bars",
-		"4": "block/stripped_oak_log",
-		"6": "block/stripped_spruce_log_top",
-		"7": "block/spruce_log",
-		"particle": "block/iron_bars"
+		"1": "fridge_pickaxe:block/iron_block",
+		"2": "fridge_pickaxe:block/iron_bars",
+		"4": "fridge_pickaxe:block/stripped_oak_log",
+		"6": "fridge_pickaxe:block/stripped_spruce_log_top",
+		"7": "fridge_pickaxe:block/spruce_log",
+		"particle": "fridge_pickaxe:block/iron_bars"
 	},
 	"elements": [
 		{
@@ -219,12 +220,12 @@
 			"scale": [0.68, 0.68, 0.68]
 		},
 		"gui": {
-			"rotation": [30, 180, 45],
+			"rotation": [30, -180, 45],
 			"translation": [-3.5, -4, 0],
 			"scale": [0.5, 0.5, 0.5]
 		},
 		"head": {
-			"rotation": [0, 180, 46],
+			"rotation": [0, -180, 46],
 			"translation": [-1.75, -19, 4.5]
 		},
 		"fixed": {
@@ -237,54 +238,47 @@
 		{
 			"name": "Kühlschrank Spitzhacke",
 			"origin": [0, 0, 0],
+			"scope": 0,
 			"color": 0,
-			"nbt": "{}",
-			"armAnimationEnabled": false,
 			"children": [
 				{
 					"name": "Griff",
 					"origin": [0, 0, 0],
+					"scope": 0,
 					"color": 0,
-					"nbt": "{}",
-					"armAnimationEnabled": false,
 					"children": [0, 1]
 				},
 				{
 					"name": "Kühlschrank",
 					"origin": [0, 0, 0],
+					"scope": 0,
 					"color": 0,
-					"nbt": "{}",
-					"armAnimationEnabled": false,
 					"children": [
 						{
 							"name": "Main",
 							"origin": [0, 0, 0],
+							"scope": 0,
 							"color": 0,
-							"nbt": "{}",
-							"armAnimationEnabled": false,
 							"children": [2, 3, 4, 5, 6, 7, 8]
 						},
 						{
 							"name": "Innenleben",
 							"origin": [0, 0, 0],
+							"scope": 0,
 							"color": 0,
-							"nbt": "{}",
-							"armAnimationEnabled": false,
 							"children": [
 								{
 									"name": "Gestell",
 									"origin": [0, 0, 0],
+									"scope": 0,
 									"color": 0,
-									"nbt": "{}",
-									"armAnimationEnabled": false,
 									"children": [9, 10]
 								},
 								{
 									"name": "Getränke und sonstiges",
 									"origin": [0, 0, 0],
+									"scope": 0,
 									"color": 0,
-									"nbt": "{}",
-									"armAnimationEnabled": false,
 									"children": [11, 12, 13]
 								}
 							]

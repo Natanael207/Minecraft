@@ -1,10 +1,11 @@
 {
+	"format_version": "1.21.11",
 	"credit": "Made with Blockbench",
 	"parent": "Pickaxe",
 	"textures": {
-		"0": "entity/wither/wither1",
-		"3": "block/black_wool",
-		"particle": "entity/wither/wither1"
+		"0": "wither_pickaxe:entity/wither",
+		"3": "wither_pickaxe:block/black_wool",
+		"particle": "wither_pickaxe:entity/wither"
 	},
 	"elements": [
 		{
@@ -125,33 +126,28 @@
 	"display": {
 		"thirdperson_righthand": {
 			"rotation": [0, 90, 0],
-			"translation": [0, 0.75, 1],
-			"scale": [4, 4, 4]
+			"translation": [0, 0.75, 1]
 		},
 		"thirdperson_lefthand": {
 			"rotation": [0, 90, 0],
-			"translation": [0, 0.75, 1.75],
-			"scale": [4, 4, 4]
+			"translation": [0, 0.75, 1.75]
 		},
 		"firstperson_righthand": {
 			"rotation": [0, 91, 0],
-			"translation": [1.25, 0, -2.25],
-			"scale": [4, 4, 4]
+			"translation": [1.25, 0, -2.25]
 		},
 		"firstperson_lefthand": {
 			"rotation": [0, 91, 0],
-			"translation": [1.25, 0, -1.25],
-			"scale": [4, 4, 4]
+			"translation": [1.25, 0, -1.25]
 		},
 		"ground": {
 			"rotation": [0, 0, 41],
-			"translation": [0, 28, 0],
-			"scale": [4, 4, 4]
+			"translation": [0, 3.5, 0]
 		},
 		"gui": {
-			"rotation": [0, 180, 45],
+			"rotation": [0, -180, 45],
 			"translation": [-1.5, -1.5, 0],
-			"scale": [4, 4, 4]
+			"scale": [0.75, 0.75, 0.75]
 		},
 		"head": {
 			"translation": [1, -2.5, -1],
@@ -159,32 +155,28 @@
 		},
 		"fixed": {
 			"rotation": [0, 0, 45],
-			"translation": [2, -1.5, 0],
-			"scale": [4, 4, 4]
+			"translation": [2, -1.5, 0]
 		}
 	},
 	"groups": [
 		{
 			"name": "Pickaxe",
 			"origin": [8, 8, 8],
+			"scope": 0,
 			"color": 0,
-			"nbt": "{}",
-			"armAnimationEnabled": false,
 			"children": [
 				{
 					"name": "Griff",
 					"origin": [8, 8, 8],
+					"scope": 0,
 					"color": 0,
-					"nbt": "{}",
-					"armAnimationEnabled": false,
 					"children": [0, 1]
 				},
 				{
 					"name": "Klinge",
 					"origin": [8, 8, 8],
+					"scope": 0,
 					"color": 0,
-					"nbt": "{}",
-					"armAnimationEnabled": false,
 					"children": [2, 3, 4, 5, 6, 7, 8]
 				}
 			]
