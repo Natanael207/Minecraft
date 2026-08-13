@@ -1,5 +1,6 @@
 scoreboard objectives add carrot_stick_boost minecraft.used:minecraft.carrot_on_a_stick
 scoreboard objectives add tickTimer dummy
+scoreboard objectives add giveFirework dummy
 gamerule mobGriefing false
 
 tellraw @a {"text":""}
