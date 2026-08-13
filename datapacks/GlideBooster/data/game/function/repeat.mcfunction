@@ -1,0 +1,2 @@
+function game:lobby/carrot_on_a_stick_trigger
+function game:lobby/hotbar

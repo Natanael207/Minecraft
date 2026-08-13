@@ -1,0 +1,1 @@
+tellraw @a {"text": "Herobrine joined the Game", "color": "yellow"}

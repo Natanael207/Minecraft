@@ -1,0 +1,2 @@
+scoreboard objectives add carrot_stick_boost minecraft.used:minecraft.carrot_on_a_stick
+say Reloaded

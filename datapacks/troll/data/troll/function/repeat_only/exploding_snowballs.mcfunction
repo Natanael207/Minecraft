@@ -1,0 +1,1 @@
+execute as @a at @s anchored eyes if entity @e[type=minecraft:snowball,distance=..2] run summon minecraft:fireball ^ ^ ^2 {ExplosionPower:0,direction:[0.0,0.0000001,0.0]}

@@ -1,0 +1,2 @@
+execute as @r at @s if entity @s[scores={carrot_stick_boost=1}] at @p run function minecraft:boost
+execute as @r at @s if entity @s[scores={carrot_stick_boost=1..}] run scoreboard players reset @a carrot_stick_boost

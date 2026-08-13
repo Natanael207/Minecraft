@@ -1,0 +1,5 @@
+the tags/function/load.json
+calls up every load function
+
+the tags/function/tick.json
+calls up every tick function

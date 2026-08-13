@@ -1,0 +1,1 @@
+item replace entity @p armor.head with minecraft:gold_ingot{display:{Name:'{"text":"Flugzeug"}'}}

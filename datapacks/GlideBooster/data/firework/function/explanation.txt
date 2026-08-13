@@ -1,0 +1,1 @@
+The give_firework function gives firework to every player that has turned the function on using the command /function firework:turn_on
