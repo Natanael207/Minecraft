@@ -1,7 +1,7 @@
 {
     "replace": false,
     "values": [
-	"firework:give_firework",
-	"game:repeat"
+	    "firework:give_firework",
+	    "game:repeat"
     ]
 }

@@ -2,6 +2,7 @@
     "replace": false,
     "values": [
         "minecraft:carrot_on_a_stick",
-	"minecraft:boost_condition"
+	"minecraft:5_tick_counter",
+	"minecraft:levitation"
     ]
 }

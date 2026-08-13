@@ -1,6 +1,3 @@
-# gibt die elytra
-execute unless items entity @a armor.* minecraft:elytra run item replace entity @a armor.chest with minecraft:elytra[minecraft:unbreakable={tag:1b}]
-
 #------------------------------------------------Seite 1------------------------------------------------
 # Pfeile links und rechts
 execute as @a if score @p hotbar_page matches 1 run item replace entity @a hotbar.0 with minecraft:carrot_on_a_stick[minecraft:custom_model_data=1]

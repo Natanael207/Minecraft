@@ -9,6 +9,12 @@ scoreboard players set @a hotbar_page 1
 scoreboard objectives add selected_map dummy
 scoreboard players set @a selected_map 3
 
+# dieser scoreboard merkt, wenn jemand stirbt
+scoreboard objectives add death_detection deathCount
+scoreboard objectives setdisplay list death_detection
+scoreboard players set @a death_detection 0
+
+# fügt eine Bossbar hinzu, welche zur mapauswahl genutzt wird
 bossbar add map "map"
 bossbar set minecraft:map name "Selected Map"
 bossbar set minecraft:map players @a

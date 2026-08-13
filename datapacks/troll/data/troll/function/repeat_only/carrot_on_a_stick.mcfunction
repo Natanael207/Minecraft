@@ -1,0 +1,2 @@
+execute as @r at @s if entity @s[scores={summon_fake_Block=1}] at @p align xyz run summon falling_block ~0.5 ~ ~0.5 {BlockState:{Name:"minecraft:stone"},NoGravity:1b,Time:-99999}
+execute as @r at @s if entity @s[scores={summon_fake_Block=1..}] run scoreboard players reset @a summon_fake_Block

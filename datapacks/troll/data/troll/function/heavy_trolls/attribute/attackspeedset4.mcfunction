@@ -1,0 +1,1 @@
+attribute @p minecraft:generic.attack_speed base set 4

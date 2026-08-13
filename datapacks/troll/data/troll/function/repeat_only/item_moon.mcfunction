@@ -1,1 +1,1 @@
-execute at @a as @e[type=item,distance=..2] unless entity @s[nbt={NoGravity:1b}] run data merge entity @s {NoGravity:1b}
+execute if score @r Moon_Gravity matches 1 at @a as @e[type=item,distance=..2] unless entity @s[nbt={NoGravity:1b}] run data merge entity @s {NoGravity:1b}

@@ -1,0 +1,1 @@
+item replace entity @a armor.head with minecraft:end_rod 
