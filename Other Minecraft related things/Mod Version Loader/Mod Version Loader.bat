@@ -1,17 +1,28 @@
 @echo off
 
+:start1
 echo    Choose a minecraft version. As an example: 1.19.3
 echo ---------------------------------------------------------
 echo This will delete all mods in the minecraft mods folder!!!
 echo ---------------------------------------------------------
+echo [1] help
+echo [2] open Mods folder
+echo [3] list all mod folder
+echo [4] clear chat history
+echo [5] close programm
+echo [...] load any version
+echo ---------------------------------------------------------
+
 
 :start
 cd %appdata%\.minecraft\modsVersionen
 
 set/p "cho=>"
-if %cho%==mods goto openModsFolder
-if %cho%==help goto help
-if %cho%==list goto listMods
+if %cho%==1 goto help
+if %cho%==2 goto openModsFolder
+if %cho%==3 goto listMods
+if %cho%==4 goto clearChat
+if %cho%==5 goto end
 if EXIST "%cho%" goto load
 if not EXIST "%cho%" echo This version or command doesn't exist. 
 goto start
@@ -19,12 +30,12 @@ goto start
 
 
 :openModsFolder
-start C:\Users\User\AppData\Roaming\.minecraft\modsVersionen
+start %appdata%\.minecraft\modsVersionen
 goto start
 
 :help
-echo Put in a minecraft version, as an example 1.19.2 with all dots. 
-echo You can also open the mods version folder by typing the command "mods".
+echo Load any version by typing its folder name. 
+echo You can find out the folder name by listing all mod folder.
 goto start
 
 :load
@@ -34,7 +45,7 @@ del *.jar
 cd %appdata%\.minecraft\modsVersionen\%cho%
 copy "*.jar" "%appdata%\.minecraft\mods"
 echo %cho% wurde geladen.
-goto end
+goto start
 
 :listMods
 cd %appdata%\.minecraft\modsVersionen
@@ -42,6 +53,10 @@ cd %appdata%\.minecraft\modsVersionen
 dir
 @echo off
 goto start
+
+:clearChat
+cls
+goto start1
 
 
 :end
