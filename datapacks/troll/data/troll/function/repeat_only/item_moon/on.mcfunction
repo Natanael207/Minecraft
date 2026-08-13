@@ -1,0 +1,1 @@
+scoreboard players set @p Moon_Gravity 1

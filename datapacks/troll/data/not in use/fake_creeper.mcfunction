@@ -1,0 +1,1 @@
+give @p minecraft:creeper_spawn_egg{EntityTag:{Fuse:999999}}

@@ -1,0 +1,1 @@
+playsound entity.creeper.primed player @a ~ ~ ~

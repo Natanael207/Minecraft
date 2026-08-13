@@ -1,0 +1,1 @@
+give @p splash_potion{CustomPotionEffects:[{Id:6,Amplifier:125b,Duration:0}],Potion:"minecraft:healing"}

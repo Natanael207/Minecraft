@@ -1,0 +1,1 @@
+give @p ender_pearl[minecraft:max_stack_size=99]

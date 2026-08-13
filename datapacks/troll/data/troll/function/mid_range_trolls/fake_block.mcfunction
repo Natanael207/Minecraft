@@ -1,0 +1,1 @@
+execute at @p align xyz run summon falling_block ~0.5 ~ ~0.5 {BlockState:{Name:"minecraft:stone"},NoGravity:1b,Time:-99999}

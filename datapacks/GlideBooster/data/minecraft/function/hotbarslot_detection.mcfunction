@@ -1,0 +1,1 @@
+execute at @a store result score @p hotbarslot_detection run data get entity @p SelectedItemSlot

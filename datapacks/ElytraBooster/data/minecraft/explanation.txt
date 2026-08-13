@@ -1,0 +1,9 @@
+Im tags/functions/load wird die function minecraft:init aufgerufen.
+Sie erstellt alle scoreboards und setzt die gamerule mobGriefing auf false.
+
+Im tags/functions/tick sind alle functions die jeden tick aufgerufen werden.
+die function minecraft:5_tick_counter ruft alle 5 ticks die boos_condition auf die wiederum 
+prüft, ob der spieler sich über einem booster befindet 
+(5 Blöcke über orangem oder gelben carpet, der auf glowstone platziert ist) wenn alles stimmt
+wird die function minecraft:boost aufgerufen. 
+Sie sorgt für den Boost, die aus einer Creeperexplosion besteht.

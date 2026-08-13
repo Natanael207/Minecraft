@@ -1,0 +1,11 @@
+{
+    "replace": false,
+    "values": [
+        "booster:carrot_on_a_stick",
+	"booster:5_tick_counter",
+	"gust:levitation",
+	"firework:give_firework",
+	"booster:booster_particle",
+	"booster:booster_killer"
+    ]
+}

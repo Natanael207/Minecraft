@@ -1,0 +1,17 @@
+{
+  "criteria": {
+    "carrot_on_a_stick_used": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "minecraft:shield"
+          ]
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": "game:used_carrot_on_a_stick"
+  }
+}

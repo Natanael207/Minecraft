@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "  X",
+        " X ",
+        "   "
+    ],
+    "key": {
+        "X": {
+            "item": "minecraft:oak_planks"
+        }
+    },
+    "result": {
+        "item": "minecraft:gold_ingot{Enchantments:[{id:knockback,lvl:999999},{id:mending,lvl:9999},{id:unbreaking,lvl:999999}],HideFlags:1}",
+        "count": 1
+    }
+}
