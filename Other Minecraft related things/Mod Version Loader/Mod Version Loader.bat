@@ -1,49 +1,47 @@
 @echo off
+
+echo    Choose a minecraft version. As an example: 1.19.3
+echo ---------------------------------------------------------
+echo This will delete all mods in the minecraft mods folder!!!
+echo ---------------------------------------------------------
+
+:start
+cd %appdata%\.minecraft\modsVersionen
+
+set/p "cho=>"
+if %cho%==mods goto openModsFolder
+if %cho%==help goto help
+if %cho%==list goto listMods
+if EXIST "%cho%" goto load
+if not EXIST "%cho%" echo This version or command doesn't exist. 
+goto start
+
+
+
+:openModsFolder
+start C:\Users\User\AppData\Roaming\.minecraft\modsVersionen
+goto start
+
+:help
+echo Put in a minecraft version, as an example 1.19.2 with all dots. 
+echo You can also open the mods version folder by typing the command "mods".
+goto start
+
+:load
 cd %appdata%\.minecraft\mods
 del *.jar
 
-:start
-echo Which version do you want to play?
-echo Type "mods" to open the mods Folder.
-set/p "cho=>"
-if %cho%==1.19.4 goto 1.19.4
-if %cho%==1.19.3 goto 1.19.3
-if %cho%==1.19.2 goto 1.19.2
-if %cho%==1.19 goto 1.19
-if %cho%==new goto newVersion
-if %cho%==mods goto mods
-goto notExisting
+cd %appdata%\.minecraft\modsVersionen\%cho%
+copy "*.jar" "%appdata%\.minecraft\mods"
+echo %cho% wurde geladen.
+goto end
 
-
-
-
-:notExisting
-echo This Version doesn't exist.
+:listMods
+cd %appdata%\.minecraft\modsVersionen
+@echo on
+dir
+@echo off
 goto start
 
-:newVersion
-goto end
-
-:mods
-start %appdata%\.minecraft\modsVersionen
-goto start
-
-
-
-
-:1.19.4
-cd %appdata%\.minecraft\modsVersionen\1.19.4
-copy "*.jar" "%appdata%\.minecraft\mods"
-goto end
-
-:1.19.3
-cd %appdata%\.minecraft\modsVersionen\1.19.3
-copy "*.jar" "%appdata%\.minecraft\mods"
-goto end
-
-:1.19.2
-cd %appdata%\.minecraft\modsVersionen\1.19.2
-copy "*.jar" "%appdata%\.minecraft\mods"
-goto end
 
 :end
