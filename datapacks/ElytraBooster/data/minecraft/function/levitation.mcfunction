@@ -1,9 +1,0 @@
-execute at @a if block ~ ~-1 ~ minecraft:air run attribute @p minecraft:gravity base set 0.08
-execute at @a if block ~ ~-1 ~ minecraft:netherrack run attribute @p minecraft:gravity base set -1
-execute at @a if block ~ ~-2 ~ minecraft:netherrack run attribute @p minecraft:gravity base set -1
-execute at @a if block ~ ~-3 ~ minecraft:netherrack run attribute @p minecraft:gravity base set -1
-execute at @a if block ~ ~-4 ~ minecraft:netherrack run attribute @p minecraft:gravity base set -1
-execute at @a if block ~ ~-5 ~ minecraft:netherrack run attribute @p minecraft:gravity base set -1
-execute at @a if block ~ ~-6 ~ minecraft:netherrack run attribute @p minecraft:gravity base set -1
-execute at @a if block ~ ~-7 ~ minecraft:netherrack run attribute @p minecraft:gravity base set -1
-execute at @a if block ~ ~-8 ~ minecraft:netherrack run attribute @p minecraft:gravity base set -1
