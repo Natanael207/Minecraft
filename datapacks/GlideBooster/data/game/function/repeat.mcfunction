@@ -5,5 +5,4 @@ function game:death_detection
 
 # Entfernt alle herumliegenden Karottenangeln und Elytren
 kill @e[type=minecraft:item,nbt={Item:{id:"minecraft:carrot_on_a_stick"}}]
-kill @e[type=minecraft:item,nbt={Item:{id:"minecraft:elytra"}}]
-
+kill @e[type=minecraft:item,nbt={Item:{id:"minecraft:firework_rocket"}}]

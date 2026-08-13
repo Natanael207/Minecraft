@@ -1,1 +1,1 @@
-execute as @a if score @p giveFirework matches 1 if entity @s[nbt=!{Inventory:[{id:"minecraft:firework_rocket"}]}] run give @s firework_rocket[lore=[Infinity],fireworks={flight_duration:0.7}]
+execute at @a if score @p giveFirework matches 1 if entity @p[nbt=!{Inventory:[{id:"minecraft:firework_rocket"}]}] run give @p firework_rocket[lore=[Infinity],fireworks={flight_duration:0.7}]

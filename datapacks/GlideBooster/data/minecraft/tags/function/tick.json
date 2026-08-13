@@ -2,6 +2,7 @@
     "replace": false,
     "values": [
 	    "firework:give_firework",
-	    "game:repeat"
+	    "game:repeat",
+        "minecraft:hotbarslot_detection"
     ]
 }

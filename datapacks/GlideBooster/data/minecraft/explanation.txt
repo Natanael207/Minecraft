@@ -3,3 +3,6 @@ calls up every load function
 
 the tags/function/tick.json
 calls up every tick function
+
+the function hotbarslot_detection could be used instead of the testing for
+the different carrot on a sticks. But at the moment it isn't beeing used.

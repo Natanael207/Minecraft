@@ -2,6 +2,7 @@
     "replace": false,
     "values": [
         "game:init",
-        "firework:init"
+        "firework:init",
+        "minecraft:init"
     ]
 }
