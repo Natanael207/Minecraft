@@ -26,12 +26,7 @@ jobs:
 
           while IFS= read -r -d '' meta; do
             dir=$(dirname "$meta")
-
-            # "./" am Anfang entfernen
             relative_dir="${dir#./}"
-
-            # Pfadbestandteile mit "-" verbinden
-            # z.B. resourcepacks/MyPack -> resourcepacks-MyPack
             name="${relative_dir//\//-}"
 
             echo "Pack gefunden: $relative_dir"
@@ -56,25 +51,15 @@ jobs:
             exit 1
           fi
 
-      - name: SHA-1 Hashes berechnen
+      - name: SHA-1 berechnen
         shell: bash
         run: |
-          set -e
-
-          echo "## SHA-1" > sha1-release-notes.txt
-          echo >> sha1-release-notes.txt
-
-          for file in *.zip; do
-            sha1=$(sha1sum "$file" | awk '{print $1}')
-
-            echo "**$file**" >> sha1-release-notes.txt
-            echo '```' >> sha1-release-notes.txt
-            echo "$sha1" >> sha1-release-notes.txt
-            echo '```' >> sha1-release-notes.txt
-            echo >> sha1-release-notes.txt
-
-            echo "$file: $sha1"
-          done
+          {
+            echo "## SHA-1"
+            for file in *.zip; do
+              echo "**$file** \`$(sha1sum "$file" | awk '{print $1}')\`"
+            done
+          } > sha1-release-notes.txt
 
       - name: SHA-1 in Release-Beschreibung einfügen
         shell: bash
@@ -82,11 +67,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           TAG_NAME: ${{ github.event.release.tag_name }}
         run: |
-          set -e
-
           {
-            echo "${{ github.event.release.body }}"
-            echo
+            printf '%s\n\n' "${{ github.event.release.body }}"
             cat sha1-release-notes.txt
           } > release-notes.txt
 
