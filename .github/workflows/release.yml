@@ -26,7 +26,12 @@ jobs:
 
           while IFS= read -r -d '' meta; do
             dir=$(dirname "$meta")
+
+            # "./" am Anfang entfernen
             relative_dir="${dir#./}"
+
+            # Pfadbestandteile mit "-" verbinden
+            # z.B. resourcepacks/MyPack -> resourcepacks-MyPack
             name="${relative_dir//\//-}"
 
             echo "Pack gefunden: $relative_dir"
@@ -51,13 +56,18 @@ jobs:
             exit 1
           fi
 
-      - name: SHA-1 berechnen
+      - name: SHA-1 Hashes berechnen
         shell: bash
         run: |
           {
             echo "## SHA-1"
+            echo
+            echo "| Pack | SHA-1 |"
+            echo "|---|---|"
+
             for file in *.zip; do
-              echo "**$file** \`$(sha1sum "$file" | awk '{print $1}')\`"
+              sha1=$(sha1sum "$file" | awk '{print $1}')
+              echo "| **$file** | \`$sha1\` |"
             done
           } > sha1-release-notes.txt
 
