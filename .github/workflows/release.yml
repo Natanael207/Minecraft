@@ -1,0 +1,63 @@
+name: Create Pack Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name }}
+
+      - name: Packs finden und verpacken
+        shell: bash
+        run: |
+          set -e
+
+          found=0
+
+          while IFS= read -r -d '' meta; do
+            dir=$(dirname "$meta")
+
+            # "./" am Anfang entfernen
+            relative_dir="${dir#./}"
+
+            # Pfadbestandteile mit "-" verbinden
+            # z.B. resourcepacks/MyPack -> resourcepacks-MyPack
+            name="${relative_dir//\//-}"
+
+            echo "Pack gefunden: $relative_dir"
+            echo "Erstelle: $name.zip"
+
+            (
+              cd "$dir"
+              zip -r "$GITHUB_WORKSPACE/$name.zip" .
+            )
+
+            found=1
+          done < <(
+            find . \
+              -type f \
+              -name "pack.mcmeta" \
+              -not -path "./.git/*" \
+              -print0
+          )
+
+          if ! compgen -G "*.zip" > /dev/null; then
+            echo "Keine pack.mcmeta gefunden."
+            exit 1
+          fi
+
+      - name: ZIPs an Release anhängen
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.event.release.tag_name }}
+          files: "*.zip"
