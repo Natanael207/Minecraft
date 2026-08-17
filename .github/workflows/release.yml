@@ -56,6 +56,43 @@ jobs:
             exit 1
           fi
 
+      - name: SHA-1 Hashes berechnen
+        shell: bash
+        run: |
+          set -e
+
+          echo "## SHA-1" > sha1-release-notes.txt
+          echo >> sha1-release-notes.txt
+
+          for file in *.zip; do
+            sha1=$(sha1sum "$file" | awk '{print $1}')
+
+            echo "**$file**" >> sha1-release-notes.txt
+            echo '```' >> sha1-release-notes.txt
+            echo "$sha1" >> sha1-release-notes.txt
+            echo '```' >> sha1-release-notes.txt
+            echo >> sha1-release-notes.txt
+
+            echo "$file: $sha1"
+          done
+
+      - name: SHA-1 in Release-Beschreibung einfügen
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG_NAME: ${{ github.event.release.tag_name }}
+        run: |
+          set -e
+
+          {
+            echo "${{ github.event.release.body }}"
+            echo
+            cat sha1-release-notes.txt
+          } > release-notes.txt
+
+          gh release edit "$TAG_NAME" \
+            --notes-file release-notes.txt
+
       - name: ZIPs an Release anhängen
         uses: softprops/action-gh-release@v2
         with:
